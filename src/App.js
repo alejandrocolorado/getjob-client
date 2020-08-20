@@ -4,9 +4,9 @@ import { Switch } from "react-router-dom";
 import AuthProvider from "./lib/AuthProvider";
 
 import Navbar from "./components/Navbar";
-import Signup from "./pages/Signup";
-import Login from "./pages/Login";
-import Private from "./pages/Private";
+import Signup from "./pages/Signup.jsx";
+import Login from "./pages/Login.jsx";
+import Private from "./pages/Private.jsx";
 import AnonRoute from "./components/AnonRoute";
 import PrivateRoute from "./components/PrivateRoute";
 
