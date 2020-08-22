@@ -10,12 +10,16 @@ class Navbar extends Component {
         <Link to={"/"} id='home-btn'>
           <h4>Home</h4>
         </Link>
+
         {isLoggedin ? (
           <>
             <p className='navbar-user'>username: {user.username}</p>
             <button className='navbar-button' onClick={logout}>
               Logout
             </button>
+            <Link to={"/profile"} id='profile-btn'>
+            <h4>Profile</h4>
+            </Link>
           </>
         ) : (
           <>
