@@ -8,15 +8,35 @@ class Auth {
     });
   }
 
-  signup({ username, password }) {
+  signup({
+    firstname,
+    lastname,
+    email,
+    password: hashPass,
+    city,
+    country,
+    phone,
+    linkedin,
+    image,
+  }) {
     return this.auth
-      .post("/auth/signup", { username, password })
+      .post("/auth/signup", {
+        firstname,
+        lastname,
+        email,
+        password: hashPass,
+        city,
+        country,
+        phone,
+        linkedin,
+        image,
+      })
       .then(({ data }) => data);
   }
 
-  login({ username, password }) {
+  login({ email, password }) {
     return this.auth
-      .post("/auth/login", { username, password })
+      .post("/auth/login", { email, password })
       .then(({ data }) => data);
   }
 
