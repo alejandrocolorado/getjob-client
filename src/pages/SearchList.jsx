@@ -2,12 +2,12 @@ import React, { Component } from "react";
 import { withAuth } from "../lib/AuthProvider";
 import axios from "axios";
 
-class Private extends Component {
+export class SearchList extends Component {
   state = {
     job: [],
   };
 
-  getJob() {
+  getJobList() {
     axios
       .get("http://localhost:4000/api/test")
       .then((responseFromApi) => {
@@ -22,15 +22,14 @@ class Private extends Component {
       });
   }
 
-  
-
   componentDidMount() {
-    this.getJob();
+    this.getJobList();
   }
+
   render() {
     return (
       <div>
-        <h1>Welcome {this.props.user.username}</h1>
+        <h1>Welcome {this.props.user.firstname}</h1>
 
         {this.state.job.map((job) => {
           return (
@@ -51,4 +50,4 @@ class Private extends Component {
   }
 }
 
-export default withAuth(Private);
+export default withAuth(SearchList);
