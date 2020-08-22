@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { withAuth } from "../lib/AuthProvider";
 import axios from "axios";
 
-
 class Private extends Component {
   state = {
     job: [],
@@ -23,6 +22,8 @@ class Private extends Component {
       });
   }
 
+  sendJ;
+
   componentDidMount() {
     this.getJob();
   }
@@ -34,7 +35,9 @@ class Private extends Component {
         {this.state.job.map((job) => {
           return (
             <div key={job.id}>
-              <a rel="noopener noreferrer" target='_blank' href={job.url}>{job.url}</a>
+              <a rel="noopener noreferrer" target="_blank" href={job.url}>
+                {job.url}
+              </a>
               <ul>
                 <li>{job.tags[0]}</li>
                 <li>{job.tags[1]}</li>
