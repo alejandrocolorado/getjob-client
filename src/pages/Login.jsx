@@ -2,33 +2,34 @@ import React, { Component } from "react";
 import { withAuth } from "../lib/AuthProvider";
 
 class Login extends Component {
-  state = { username: "", password: "" };
+  state = { email: "", password: "" };
 
   handleFormSubmit = (event) => {
     event.preventDefault();
-    const { username, password } = this.state;
-    //console.log('Login -> form submit', { username, password });
-    this.props.login({ username, password });
+    const { email, password } = this.state;
+    //console.log('Login -> form submit', { email, password });
+    this.props.login({ email, password });
   };
 
   handleChange = (event) => {
     const { name, value } = event.target;
     this.setState({ [name]: value });
+    
   };
 
   render() {
-    const { username, password } = this.state;
+    const { email, password } = this.state;
 
     return (
       <div>
         <h1>Login</h1>
 
         <form onSubmit={this.handleFormSubmit}>
-          <label>Username:</label>
+          <label>email:</label>
           <input
             type='text'
-            name='username'
-            value={username}
+            name='email'
+            value={email}
             onChange={this.handleChange}
           />
 

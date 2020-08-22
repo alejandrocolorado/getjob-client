@@ -2,18 +2,28 @@
   margin: 0;
   padding: 0;
 }
+#root {
+  background: url(/images/18238.jpg) no-repeat center center fixed;
+  background-size: cover;
+  -moz-background-size: cover;
+  -webkit-background-size: cover;
+  -o-background-size: cover;
+}
+/* .container{
+background-color: white;
 
+} */
 .App {
-  padding: 20px;;
+  padding: 20px;
 }
 
-nav.navbar { 
+nav.navbar {
   display: flex;
   padding: 20px;
-  background: #686de0; 
+  background: #686de0;
 }
 
-nav.navbar .navbar-user{
+nav.navbar .navbar-user {
   margin-left: 10px;
   color: white;
 }
