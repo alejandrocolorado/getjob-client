@@ -49,8 +49,8 @@ class Navbar extends Component {
           </>
         ) : (
           <>
-            <li className="js-content">
-              <Link to={"/completed"}>
+            <li className="js-content logout">
+              <Link to={"/signup"}>
                 <FontAwesomeIcon
                   className="icons"
                   icon={faUserPlus}
@@ -58,8 +58,8 @@ class Navbar extends Component {
                 />
               </Link>
             </li>
-            <li className="js-content">
-              <Link to={"/portfolio"}>
+            <li className="js-content logout">
+              <Link to={"/login"}>
                 <FontAwesomeIcon
                   className="icons"
                   icon={faSignInAlt}

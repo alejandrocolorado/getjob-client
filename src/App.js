@@ -6,6 +6,7 @@ import AuthProvider from "./lib/AuthProvider";
 
 import Navbar from "./components/Navbar";
 import Signup from "./pages/Signup.jsx";
+import Proving from './components/Proving'
 import Login from "./pages/Login.jsx";
 import AnonRoute from "./components/AnonRoute";
 import PrivateRoute from "./components/PrivateRoute";
@@ -22,7 +23,7 @@ class App extends Component {
 
           <Navbar/>
           <Switch>
-            <AnonRoute exact path="/signup" component={Signup} />
+            <AnonRoute exact path="/signup" component={Proving} />
             <AnonRoute exact path="/login" component={Login} />
             <PrivateRoute exact path="/options" component={Options} />
             <PrivateRoute path="/search" component={Search} />

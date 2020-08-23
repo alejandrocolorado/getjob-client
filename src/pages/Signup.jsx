@@ -68,8 +68,8 @@ class Signup extends Component {
           <label>Fisrtname:</label>
           <input
             type="text"
-            name="username"
-            value={username}
+            name="firstname"
+            value={firstname}
             onChange={this.handleChange}
           />
 

@@ -47,45 +47,49 @@ body {
   overscroll-behavior: contain;
 }
 .app.js-content {
-  padding-top: 58px;
+  padding-top: 6vw;
 }
 
 .wrapper.navigate {
   height: 100%;
 }
 
-.menu.js-content{
+.menu.js-content {
   box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 4px 0px;
-    height: 58px;
-    width: 100%;
-    position: fixed;
-    left: 0px;
-    top: 0px;
-    z-index: 10;
-    padding: 5px 15px;
-    list-style: none;
-    margin: 0px;
-    background: rgb(255, 255, 255); 
+  height: 5vw;
+  width: 100%;
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  z-index: 10;
+  padding: 5px 15px;
+  list-style: none;
+  margin: 0px;
+  background: rgb(255, 255, 255);
 }
 
-ul{
+ul {
   display: block;
-    list-style-type: disc;
-    margin-block-start: 1em;
-    margin-block-end: 1em;
-    margin-inline-start: 0px;
-    margin-inline-end: 0px;
-    padding-inline-start: 40px;
-    
+  list-style-type: disc;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  padding-inline-start: 40px;
 }
 
-.menu.js-content li.js-content{
+.menu.js-content li.js-content {
   display: inline-block;
-  width: 24.3333%;
+  width: 33.3333%;
   text-align: center;
-
-} 
-
+}
+.menu.js-content li.js-content.logout {
+  width: 49.3333%;
+}
+.row{
+  margin-top: 2vw;
+  justify-content: center;
+}
 @media (min-width: 600px) {
   body {
     position: relative;
@@ -101,7 +105,7 @@ ul{
     display: flex;
     padding-top: 0px;
   }
-  .menu.js-content{
+  .menu.js-content {
     left: auto;
     top: auto;
     position: relative;
