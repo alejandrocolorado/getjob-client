@@ -15,6 +15,7 @@ import Search from "./pages/Search.jsx";
 import EditProfile from "./pages/EditProfile.jsx";
 import PendingJobs from "./pages/PendingJobs.jsx";
 import CompletedJobs from "./pages/CompletedJobs.jsx";
+import Portfolio from "./pages/Portfolio.jsx";
 
 class App extends Component {
   render() {
@@ -33,6 +34,7 @@ class App extends Component {
             <PrivateRoute exact path="/edit-profile" component={EditProfile} />
             <PrivateRoute exact path="/pending" component={PendingJobs} />
             <PrivateRoute exact path="/completed" component={CompletedJobs} />
+            <PrivateRoute exact path="/portfolio" component={Portfolio} />
           </Switch>
         </div>
       </AuthProvider>

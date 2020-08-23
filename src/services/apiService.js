@@ -20,6 +20,10 @@ class ApiService {
         return this.api.get('/user/completed')
     }
 
+    getAllPortfolioItems = async () => {
+        return this.api.get('/user/portfolio')
+    }
+
    
 
     

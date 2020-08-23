@@ -12,10 +12,10 @@ export class Portfolio extends Component {
 
     
     getPortfolio = async () => {
-        const portfolioObj = await apiService.getAllPortfolio();
-
+        const portfolioObj = await apiService.getAllPortfolioItems();
+        console.log(portfolioObj)
         this.setState ({
-            Portfolio: portfolioObj.data
+            portfolio: portfolioObj.data
         })
     }
 
@@ -27,18 +27,14 @@ export class Portfolio extends Component {
     render() {
         return (
             <div>
-            <h3>Completed Job Applications</h3>
+            <h3>Portfolio</h3>
             <div>
               {this.state.portfolio.map((portfolioItem) => {
                   
                 return (
                   <div key={portfolioItem._id}>
-                      <h3>{portfolioItem.title}</h3>
-                      <ul>
-                          {portfolioItem.technologies.map((tag) =>{
-                              return (<li>{tag.name}</li>)
-                          })}
-                      </ul>
+                      <h4>{portfolioItem.technologies.name}</h4>
+                      <p>{portfolioItem.technologies.url}</p>
                   </div>
                 );
               })}
