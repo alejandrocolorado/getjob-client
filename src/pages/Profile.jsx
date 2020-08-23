@@ -18,15 +18,15 @@ export class Profile extends Component {
               <button className='navbar-button'>Edit your profile</button>
             </Link>
             <br />
-            <Link to='/signup'>
+            <Link to='/pending'>
               <button className='navbar-button'>Pending Applications</button>
             </Link>
             <br />
-            <Link to='/signup'>
+            <Link to='/completed'>
               <button className='navbar-button'>Completed Applications</button>
             </Link>
             <br />
-            <Link to='/signup'>
+            <Link to='/portfolio'>
               <button className='navbar-button'>Portfolio</button>
             </Link>
             <br />
