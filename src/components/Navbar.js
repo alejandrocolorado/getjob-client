@@ -1,38 +1,76 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { withAuth } from "../lib/AuthProvider";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faUser,
+  faFolderMinus,
+  faUserPlus,
+  faSignInAlt,
+  faSearch,
+} from "@fortawesome/free-solid-svg-icons";
 
 class Navbar extends Component {
   render() {
-    const { user, logout, isLoggedin } = this.props;
+    const { isLoggedin } = this.props;
     return (
-      <nav className='navbar'>
-        <Link to={"/"} id='home-btn'>
-          <h4>Home</h4>
-        </Link>
-
+      <div>
+      <ul className=" js-content menu">
         {isLoggedin ? (
           <>
-            <p className='navbar-user'>username: {user.username}</p>
-            <button className='navbar-button' onClick={logout}>
-              Logout
-            </button>
-            <Link to={"/profile"} id='profile-btn'>
-            <h4>Profile</h4>
-            </Link>
+            <li className="js-content">
+              <Link to={"/profile"}>
+                <FontAwesomeIcon
+                  className="icons"
+                  icon={faUser}
+                  style={{ style: "none" }}
+                />
+              </Link>
+            </li>
+            <li className="js-content">
+              <Link to={"/options"}>
+                <FontAwesomeIcon
+                  className="icons"
+                  icon={faSearch}
+                  style={{ style: "none" }}
+                />
+              </Link>
+            </li>
+         
+            <li className="js-content">
+              <Link to={"/portfolio"}>
+                <FontAwesomeIcon
+                  className="icons"
+                  icon={faFolderMinus}
+                  style={{ style: "none" }}
+                />
+              </Link>
+            </li>
           </>
         ) : (
           <>
-            <Link to='/login'>
-              <button className='navbar-button'>Login</button>
-            </Link>
-            <br />
-            <Link to='/signup'>
-              <button className='navbar-button'>Sign Up</button>
-            </Link>
+            <li className="js-content logout">
+              <Link to={"/signup"}>
+                <FontAwesomeIcon
+                  className="icons"
+                  icon={faUserPlus}
+                  style={{ style: "none" }}
+                />
+              </Link>
+            </li>
+            <li className="js-content logout">
+              <Link to={"/login"}>
+                <FontAwesomeIcon
+                  className="icons"
+                  icon={faSignInAlt}
+                  style={{ style: "none" }}
+                />
+              </Link>
+            </li>
           </>
         )}
-      </nav>
+      </ul>
+      </div>
     );
   }
 }

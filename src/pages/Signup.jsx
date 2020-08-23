@@ -2,14 +2,45 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { withAuth } from "../lib/AuthProvider";
 
+
 class Signup extends Component {
-  state = { username: "", password: "" };
+  state = {
+    firstname: "",
+    lastname: "",
+    email: "",
+    password: "",
+    city: "",
+    country: "",
+    phone: "",
+    linkedin: "",
+    image: "",
+  };
 
   handleFormSubmit = (event) => {
     event.preventDefault();
-    const { username, password } = this.state;
+    const {
+      firstname,
+      lastname,
+      email,
+      password,
+      city,
+      country,
+      phone,
+      linkedin,
+      image,
+    } = this.state;
     //console.log('Signup -> form submit', { username, password });
-    this.props.signup({ username, password });
+    this.props.signup({
+      firstname,
+      lastname,
+      email,
+      password,
+      city,
+      country,
+      phone,
+      linkedin,
+      image,
+    });
   };
 
   handleChange = (event) => {
@@ -18,29 +49,39 @@ class Signup extends Component {
   };
 
   render() {
-    const { username, password } = this.state;
+    const {
+      firstname,
+      lastname,
+      email,
+      password,
+      city,
+      country,
+      phone,
+      linkedin,
+      image,
+    } = this.state;
     return (
       <div>
         <h1>Sign Up</h1>
 
         <form onSubmit={this.handleFormSubmit}>
-          <label>Username:</label>
+          <label>Fisrtname:</label>
           <input
-            type='text'
-            name='username'
-            value={username}
+            type="text"
+            name="firstname"
+            value={firstname}
             onChange={this.handleChange}
           />
 
-          <label>Password:</label>
+          <label>Lastname:</label>
           <input
-            type='password'
-            name='password'
+            type="password"
+            name="password"
             value={password}
             onChange={this.handleChange}
           />
 
-          <input type='submit' value='Signup' />
+          <input type="submit" value="Signup" />
         </form>
 
         <p>Already have account?</p>
@@ -51,3 +92,4 @@ class Signup extends Component {
 }
 
 export default withAuth(Signup);
+

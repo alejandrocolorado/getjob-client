@@ -33,7 +33,7 @@ class Search extends Component {
 
   render() {
     return (
-      <div>
+      <div className="js-content section cover">
         <h1>Welcome {this.props.user.firstname}</h1>
 
         {this.state.jobs.map((job) => {

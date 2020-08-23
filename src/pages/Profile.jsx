@@ -8,9 +8,7 @@ export class Profile extends Component {
         const { user, logout, isLoggedin } = this.props;
         console.log(user)
         return (
-            <div>
-
-        
+            <div className='js-content section cover'>
             <img src={`${user.image}`} style={{width: 100}}/>
             <p className='navbar-user'>Hello!: {user.firstname}</p>
          

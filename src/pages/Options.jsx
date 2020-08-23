@@ -61,7 +61,7 @@ function Options() {
   // Al click se envia la variable buildQuery al backend, se hace la petición a la API y se trae el Json para iterar.
 
   return (
-    <div>
+    <div className="js-content section cover">
       {categories.map((el, i) => (
         <Button key={i} variant="outline-success">
           <Category category={el} onClick={() => onClickCategory(el)} />
@@ -76,7 +76,7 @@ function Options() {
         ))}
       </div>
       <Link to={`/search${buildQuery()}`}>
-        <button>go</button>
+        <button>common</button>
       </Link>
     </div>
   );
