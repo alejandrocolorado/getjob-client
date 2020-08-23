@@ -14,7 +14,7 @@ export class Profile extends Component {
             <img src={`${user.image}`} style={{width: 100}}/>
             <p className='navbar-user'>Hello!: {user.firstname}</p>
          
-            <Link to='/login'>
+            <Link to='/edit-profile'>
               <button className='navbar-button'>Edit your profile</button>
             </Link>
             <br />
