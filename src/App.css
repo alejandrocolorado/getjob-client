@@ -3,7 +3,7 @@
   padding: 0;
 }
 #root {
-  background: url(/images/18238.jpg) no-repeat center center fixed;
+  background: url(/* /images/18238.jpg */) no-repeat center center fixed;
   background-size: cover;
   -moz-background-size: cover;
   -webkit-background-size: cover;
