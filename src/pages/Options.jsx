@@ -55,7 +55,7 @@ function Options() {
   function buildQuery() {
     return `?category=${state.category}&tags=${state.tags
       .join(",")
-      .toLowerCase()}`;
+      .toLowerCase()}&tag_operator=or`;
   }
 
   // Al click se envia la variable buildQuery al backend, se hace la petición a la API y se trae el Json para iterar.

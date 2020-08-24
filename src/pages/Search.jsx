@@ -1,5 +1,16 @@
 import React, { Component } from "react";
 import { withAuth } from "../lib/AuthProvider";
+import {
+  MDBCard,
+  MDBCardBody,
+  MDBCardTitle,
+  MDBCardText,
+  MDBCardHeader,
+  MDBCardFooter,
+  MDBBtn,
+  MDBContainer,
+} from "mdbreact";
+import { Link } from "react-router-dom";
 import axios from "axios";
 
 class Search extends Component {
@@ -34,22 +45,31 @@ class Search extends Component {
   render() {
     return (
       <div className="js-content section cover">
-        <h1>Welcome {this.props.user.firstname}</h1>
-
-        {this.state.jobs.map((job) => {
-          return (
-            <div key={job.id}>
-              <a rel="noopener noreferrer" target="_blank" href={job.url}>
-                {job.url}
-              </a>
-              <ul>
-                <li>{job.tags[0]}</li>
-                <li>{job.tags[1]}</li>
-                <li>{job.tags[2]}</li>
-              </ul>
-            </div>
-          );
-        })}
+        <MDBContainer>
+          {this.state.jobs.map((job) => {
+            let newTo = {
+              pathname: `/project-detail/${job.id}`,
+              job,
+            };
+            return (
+              <MDBCard
+                style={{ marginTop: "1rem" }}
+                className="text-center"
+                key={job.id}
+              >
+                <MDBCardBody>
+                  <MDBCardTitle>{job.company_name}</MDBCardTitle>
+                  <MDBCardText>{job.title}</MDBCardText>
+                  <Link to={newTo}>
+                    {" "}
+                    <MDBBtn color="success" size="sm">Check out!</MDBBtn>
+                  </Link>
+                </MDBCardBody>
+              </MDBCard>
+            );
+          })}
+        </MDBContainer>
+        ;
       </div>
     );
   }

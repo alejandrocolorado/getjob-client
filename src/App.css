@@ -86,31 +86,9 @@ ul {
 .menu.js-content li.js-content.logout {
   width: 49.3333%;
 }
-.row{
+.row {
   margin-top: 2vw;
   justify-content: center;
-}
-@media (min-width: 600px) {
-  body {
-    position: relative;
-  }
-  .mainWrapper {
-    padding-top: 50px;
-  }
-  .cover {
-    overflow: auto;
-    justify-content: flex-start;
-  }
-  .app.js-content {
-    display: flex;
-    padding-top: 0px;
-  }
-  .menu.js-content {
-    left: auto;
-    top: auto;
-    position: relative;
-    flex: 0 1 0%;
-  }
 }
 
 @media (min-height: 1000px) and (min-width: 600px) {
@@ -141,6 +119,33 @@ ul {
     position: relative;
     z-index: 2;
     border-radius: 12px;
+  }
+}
+@media (min-width: 300px) and (max-width: 590px) {
+  .menu.js-content {
+    height: 9vw;
+  }
+}
+@media (min-width: 600px) {
+  body {
+    position: relative;
+  }
+  .mainWrapper {
+    padding-top: 50px;
+  }
+  .cover {
+    overflow: auto;
+    justify-content: flex-start;
+  }
+  .app.js-content {
+    display: flex;
+    padding-top: 0px;
+  }
+  .menu.js-content {
+    left: auto;
+    top: auto;
+    position: relative;
+    flex: 0 1 0%;
   }
 }
 /* .App {
