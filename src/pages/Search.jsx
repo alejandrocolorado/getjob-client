@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { withAuth } from "../lib/AuthProvider";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 class Search extends Component {
   state = {
@@ -37,6 +38,10 @@ class Search extends Component {
         <h1>Welcome {this.props.user.firstname}</h1>
 
         {this.state.jobs.map((job) => {
+          let newTo = {
+            pathname: `/project-detail/${job.id}`,
+            job,
+          };
           return (
             <div key={job.id}>
               <a rel="noopener noreferrer" target="_blank" href={job.url}>
@@ -47,6 +52,7 @@ class Search extends Component {
                 <li>{job.tags[1]}</li>
                 <li>{job.tags[2]}</li>
               </ul>
+              <Link to={newTo}>Check it out!</Link>
             </div>
           );
         })}
