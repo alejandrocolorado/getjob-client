@@ -5,14 +5,11 @@ import {
   MDBCardBody,
   MDBCardTitle,
   MDBCardText,
-  MDBCardHeader,
-  MDBCardFooter,
   MDBBtn,
   MDBContainer,
 } from "mdbreact";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import { Link } from "react-router-dom";
 
 class Search extends Component {
   state = {

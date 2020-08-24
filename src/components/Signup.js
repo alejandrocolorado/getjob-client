@@ -241,7 +241,7 @@ class Signup extends Component {
             </MDBCol>
           </MDBRow>
         </MDBContainer>
-        ;
+        <br/>
       </div>
     );
   }
