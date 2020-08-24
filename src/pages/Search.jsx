@@ -12,6 +12,7 @@ import {
 } from "mdbreact";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 class Search extends Component {
   state = {

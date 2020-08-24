@@ -16,6 +16,8 @@ import EditProfile from "./pages/EditProfile.jsx";
 import PendingJobs from "./pages/PendingJobs.jsx";
 import CompletedJobs from "./pages/CompletedJobs.jsx";
 import Portfolio from "./pages/Portfolio.jsx";
+import ProjectDetail from "./pages/JobDetail.jsx";
+import Technology from "./pages/Technology.jsx";
 
 class App extends Component {
   render() {
@@ -35,6 +37,8 @@ class App extends Component {
             <PrivateRoute exact path="/pending" component={PendingJobs} />
             <PrivateRoute exact path="/completed" component={CompletedJobs} />
             <PrivateRoute exact path="/portfolio" component={Portfolio} />
+            <PrivateRoute exact path="/project-detail/:id" component={ProjectDetail} />
+            <PrivateRoute exact path="/project-detail/:tag" component={Technology} />
           </Switch>
           </div>
         </div>
