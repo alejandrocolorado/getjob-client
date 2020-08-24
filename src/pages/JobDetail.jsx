@@ -37,11 +37,19 @@ export class ProjectDetail extends Component {
                     <p>{this.state.job.salary}</p>
                 </div>
                 <div>
-                    <Link to={this.state.job.url}>Check out more</Link>
+                    <a rel="noopener noreferrer" target="_blank" href={this.state.job.url}>Check out more</a>
                 </div>
                 </section>
+               
                 <section>
                     <h2>TECHNOLOGIES</h2>
+                    {this.state.job.tags.map((tag) => {
+                        return <div>
+                            <img src="" alt="tech logo" style={{width: 50}}/>
+                            <h4>{tag}</h4>
+                            <Link to={`/technology/${tag.toLowerCase()}`}>GO</Link>
+                        </div>
+                    })}
                     
                 </section>
             </div>

@@ -41,7 +41,7 @@ class Search extends Component {
           let newTo = {
             pathname: `/project-detail/${job.id}`,
             job,
-          };
+          }; 
           return (
             <div key={job.id}>
               <a rel="noopener noreferrer" target="_blank" href={job.url}>
