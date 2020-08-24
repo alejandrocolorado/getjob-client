@@ -76,7 +76,7 @@ function Options() {
         ))}
       </div>
       <Link to={`/search${buildQuery()}`}>
-        <button>common</button>
+        <button>Search</button>
       </Link>
     </div>
   );
