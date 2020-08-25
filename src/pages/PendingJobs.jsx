@@ -45,10 +45,11 @@ export class PendingJobs extends Component {
                   {job.technologies.map((tag, i) => {
                     return (
                       <div>
-                        {(tag.name === '') ?
+                        {(tag.name === '' ) ?
                         <br/> : <li key={i}>{tag.name}</li>
                         }
                       </div>
+                      
                     );
                   })}
                 </ul>

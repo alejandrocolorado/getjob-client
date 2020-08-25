@@ -2,30 +2,33 @@ import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import { withAuth } from "../lib/AuthProvider";
 import { Link } from "react-router-dom";
-import { MDBBtn } from "mdbreact";
 
 
 const queryObject = {
   category: null,
   tags: [],
 };
+
 //vincular las tags a links de udemy, en un archivo aparte, y hacer dos variables distintas para design y web-dev.
-const tags = [
+const tagsSoftware = [
   "Frontend",
   "CSS",
-  "React",
+  "react",
   "Javascript",
-  "Python",
-  "sketch",
-  "UI",
-  "adobe",
-  "UX",
+  "php",
+  "node.js",
+  "python",
 ];
+const tagsDesign = ["sketch", "UI/UX", "html", "Figma", "CSS"];
 
 const categories = ["design", "software-dev"];
 
 function Tag({ tag, ...rest }) {
-  return <div {...rest}>{tag}</div>;
+  return (
+    <Button variant="outline-success" {...rest}>
+      {tag}
+    </Button>
+  );
 }
 
 function Category({ category, ...rest }) {
@@ -35,6 +38,21 @@ function Category({ category, ...rest }) {
 function Options() {
   const [state, setState] = useState(queryObject);
 
+  function isTagActive(tag, selectedTags) {
+    return selectedTags.includes(tag);
+  }
+
+  function renderTags(tags) {
+    return tags.map((el, i) => (
+      <Tag
+        active={isTagActive(el, state.tags)}
+        tag={el}
+        key={i}
+        onClick={() => onClickTag(el)}
+      />
+    ));
+  }
+
   function onClickCategory(category) {
     setState({
       ...state,
@@ -43,21 +61,25 @@ function Options() {
   }
 
   function onClickTag(tag) {
-    if (state.tags.length >= 3) {
-      return;
+    if (state.tags.includes(tag)) {
+      return setState({
+        ...state,
+        tags: state.tags.filter((el) => el !== tag),
+      });
+    } else if (state.tags.length < 3) {
+      setState({
+        ...state,
+        tags: [...state.tags, tag],
+      });
     }
-    setState({
-      ...state,
-      tags: [...state.tags, tag],
-    });
   }
 
   //llamar al backend
 
   function buildQuery() {
-    return `?category=${state.category}&tags=${state.tags
-      .join(",")
-      .toLowerCase()}&tag_operator=or`;
+    return `?category=${state.category}&tags=${state.tags.join(
+      ","
+    )}&tag_operator=or`;
   }
 
   // Al click se envia la variable buildQuery al backend, se hace la petición a la API y se trae el Json para iterar.
@@ -69,19 +91,15 @@ function Options() {
           <Category category={el} onClick={() => onClickCategory(el)} />
         </Button>
       ))}
-
       <div>
-        {tags.map((el, i) => (
-          <Button key={i} variant="outline-success">
-            <Tag tag={el} key={i} onClick={() => onClickTag(el)} />
-          </Button>
-        ))}
+        {state.category &&
+          renderTags(state.category === "design" ? tagsDesign : tagsSoftware)}
       </div>
 
       <Link to={`/search${buildQuery()}`}>
-      <MDBBtn color="grey" size="sm">
-              Common!
-            </MDBBtn>
+        <Button color="grey" size="sm">
+          Common!
+        </Button>
       </Link>
     </div>
   );

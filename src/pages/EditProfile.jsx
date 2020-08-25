@@ -18,6 +18,7 @@ export class EditProfile extends Component {
       country: user.country,
       phone: user.phone,
       linkedin: user.linkedin,
+      image:user.image,
       user,
       messages: ""
     };
@@ -33,6 +34,7 @@ export class EditProfile extends Component {
       country,
       phone,
       linkedin,
+      image,
       user
     } = this.state;
     //console.log('Signup -> form submit', { email, firstname });
@@ -55,6 +57,7 @@ export class EditProfile extends Component {
         country,
         phone,
         linkedin,
+        image,
         user
       },)
       .then(() => {

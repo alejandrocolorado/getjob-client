@@ -4,12 +4,32 @@ import { withAuth } from "../lib/AuthProvider";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faAngleDoubleRight,
-  faReact,
-  faCoffee,
+  faDesktop,
 } from "@fortawesome/free-solid-svg-icons";
+import {
+  faReact,
+  faJsSquare,
+  faPhp,
+  faNodeJs,
+  faPython,
+  faCss3Alt,
+  faSketch,
+} from "@fortawesome/free-brands-svg-icons";
 import { MDBBtn } from "mdbreact";
 
-import axios from "axios";
+const tags = [
+  "frontend",
+  "CSS",
+  "react",
+  "javascript",
+  "php",
+  "node.js",
+  "python",
+  "sketch",
+  "UI/UX",
+  "html",
+  "figma",
+];
 
 export class ProjectDetail extends Component {
   constructor(props) {
@@ -22,12 +42,32 @@ export class ProjectDetail extends Component {
     tag.toLowerCase();
     switch (tag) {
       case "react":
-        return <FontAwesomeIcon icon={faCoffee} />;
+        return <FontAwesomeIcon icon={faReact} />;
         break;
-      case "react":
-        return <FontAwesomeIcon icon={faCoffee} />;
+      case "javascript":
+        return <FontAwesomeIcon icon={faJsSquare} />;
         break;
-
+      case "php":
+        return <FontAwesomeIcon icon={faPhp} />;
+        break;
+      case "node.js":
+        return <FontAwesomeIcon icon={faNodeJs} />;
+        break;
+      case "CSS":
+        return <FontAwesomeIcon icon={faCss3Alt} />;
+        break;
+      case "python":
+        return <FontAwesomeIcon icon={faPython} />;
+        break;
+      case "frontend":
+        return <FontAwesomeIcon icon={faDesktop} />;
+        break;
+      case "sketch":
+        return <FontAwesomeIcon icon={faSketch} />;
+        break;
+      case "sketch":
+        return <FontAwesomeIcon icon={faSketch} />;
+        break;
       default:
         break;
     }
@@ -71,11 +111,11 @@ export class ProjectDetail extends Component {
 
         <section>
           <h2>TECHNOLOGIES</h2>
+
           {this.state.job.tags.map((tag, i) => {
-            return (
+            return tags.includes(tag) ? (
               <div key={i}>
                 {this.dynamicImage(tag)}
-
                 <h4>{tag}</h4>
                 <Link to={`/technology/${tag.toLowerCase()}`}>
                   <FontAwesomeIcon
@@ -84,7 +124,10 @@ export class ProjectDetail extends Component {
                     style={{ style: "none" }}
                   />
                 </Link>
+                {console.log(this.state.job.tags)}
               </div>
+            ) : (
+              <br key={i} />
             );
           })}
         </section>
