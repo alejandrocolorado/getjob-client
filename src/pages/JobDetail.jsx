@@ -31,13 +31,27 @@ const tags = [
   "figma",
 ];
 
-export class ProjectDetail extends Component {
+export class JobDetail extends Component {
   constructor(props) {
     super(props);
     this.state = {
       job: this.props.location.job,
     };
-  }
+  };
+
+  saveJob = (job) => {
+    const userId = this.props.user._id
+    
+    axios
+      .post("http://localhost:4000/job/job-detail", {job, userId})
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   dynamicImage = (tag) => {
     tag.toLowerCase();
     switch (tag) {
@@ -73,7 +87,7 @@ export class ProjectDetail extends Component {
     }
   };
   render() {
-    console.log(this.state);
+    console.log(this.props);
     return (
       <div className="js-content section cover">
         <h3>{this.state.job.title}</h3>
@@ -117,7 +131,7 @@ export class ProjectDetail extends Component {
               <div key={i}>
                 {this.dynamicImage(tag)}
                 <h4>{tag}</h4>
-                <Link to={`/technology/${tag.toLowerCase()}`}>
+                {/* <Link to={`/technology/${tag.toLowerCase()}`}>
                   <FontAwesomeIcon
                     className="icons"
                     icon={faAngleDoubleRight}
@@ -125,20 +139,23 @@ export class ProjectDetail extends Component {
                   />
                 </Link>
                 {console.log(this.state.job.tags)}
+                </Link> */}
               </div>
             ) : (
               <br key={i} />
             );
           })}
         </section>
+        <button onClick={this.saveJob(this.state.job)}>
         <Link to={"/pending"}>
           <MDBBtn color="light-grey" size="sm">
-            Start application
+          Save job as draft
           </MDBBtn>
         </Link>
+        </button>
       </div>
     );
   }
 }
 
-export default withAuth(ProjectDetail);
+export default withAuth(JobDetail);

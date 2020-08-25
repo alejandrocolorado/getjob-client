@@ -10,23 +10,35 @@ import {
 } from "mdbreact";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import queryString from 'query-string';
 
 class Search extends Component {
-  state = {
+  constructor(props){
+    super(props);
+ 
+  this.state = {
     jobs: [],
   };
+
+}
+
+  
 
   componentDidMount() {
     this.getJobList();
   }
-  
-  getJobList() {
+
+  getJobList(props) {
+   
+    const queryValues = queryString.parse(this.props.location.search)
+    console.log(queryValues)
     axios({
       method: "post",
       url: "http://localhost:4000/api/test",
       data: {
-        query: window.location.search,
+        query: this.props.location.search,
       },
+      
     })
     .then((response) => {
       this.setState({
@@ -47,7 +59,7 @@ class Search extends Component {
         <MDBContainer>
           {this.state.jobs.map((job) => {
             let newTo = {
-              pathname: `/project-detail/${job.id}`,
+              pathname: `/job-detail/${job.id}`,
               job,
             };
             return (
@@ -68,7 +80,7 @@ class Search extends Component {
             );
           })}
         </MDBContainer>
-        ;
+        
       </div>
     );
   }
