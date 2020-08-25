@@ -40,12 +40,13 @@ class Search extends Component {
       },
       
     })
-      .then((response) => {
-        this.setState({
-          jobs: response.data,
-        });
-      })
-      .catch((error) => {
+    .then((response) => {
+      this.setState({
+        jobs: response.data,
+      });
+
+    })
+    .catch((error) => {
         this.setState({
           jobs: [],
         });
@@ -79,7 +80,7 @@ class Search extends Component {
             );
           })}
         </MDBContainer>
-        ;
+        
       </div>
     );
   }

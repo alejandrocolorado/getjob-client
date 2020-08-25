@@ -2,7 +2,13 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { withAuth } from "../lib/AuthProvider";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faAngleDoubleRight } from "@fortawesome/free-solid-svg-icons";
+import {
+  faAngleDoubleRight,
+  faReact,
+  faCoffee,
+} from "@fortawesome/free-solid-svg-icons";
+import { MDBBtn } from "mdbreact";
+
 import axios from "axios";
 
 export class JobDetail extends Component {
@@ -11,11 +17,11 @@ export class JobDetail extends Component {
     this.state = {
       job: this.props.location.job,
     };
-  }
+  };
 
   saveJob = (job) => {
     const userId = this.props.user._id
-    console.log(userId)
+    
     axios
       .post("http://localhost:4000/job/job-detail", {job, userId})
       .then((response) => {
@@ -26,6 +32,20 @@ export class JobDetail extends Component {
       });
   };
 
+  dynamicImage = (tag) => {
+    tag.toLowerCase();
+    switch (tag) {
+      case "react":
+        return <FontAwesomeIcon icon={faCoffee} />;
+        break;
+      case "react":
+        return <FontAwesomeIcon icon={faCoffee} />;
+        break;
+
+      default:
+        break;
+    }
+  };
   render() {
     console.log(this.props);
     return (
@@ -68,7 +88,8 @@ export class JobDetail extends Component {
           {this.state.job.tags.map((tag, i) => {
             return (
               <div key={i}>
-                <img src="" alt="tech logo" style={{ width: 50 }} />
+                {this.dynamicImage(tag)}
+
                 <h4>{tag}</h4>
                 <Link to={`/technology/${tag.toLowerCase()}`}>
                   <FontAwesomeIcon
@@ -82,7 +103,11 @@ export class JobDetail extends Component {
           })}
         </section>
         <button onClick={this.saveJob(this.state.job)}>
+        <Link to={"/pending"}>
+          <MDBBtn color="light-grey" size="sm">
           Save job as draft
+          </MDBBtn>
+        </Link>
         </button>
       </div>
     );

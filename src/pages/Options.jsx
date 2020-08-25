@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import { withAuth } from "../lib/AuthProvider";
 import { Link } from "react-router-dom";
+import { MDBBtn } from "mdbreact";
+
 
 const queryObject = {
   category: null,
@@ -75,8 +77,11 @@ function Options() {
           </Button>
         ))}
       </div>
+
       <Link to={`/search${buildQuery()}`}>
-        <button>Search</button>
+      <MDBBtn color="grey" size="sm">
+              Common!
+            </MDBBtn>
       </Link>
     </div>
   );

@@ -105,15 +105,27 @@ flex-direction: column;
   border-radius: 50%;
   background-size: 100% auto;
   margin: auto;
-  margin-top: 5vw;
+  margin-top: 2vw;
 }
 .but-profile{
   justify-content: center;
 }
-
+.buttons-edit{
+  margin: auto;
+  margin-bottom: 3vw;
+}
+.buttons-logout{
+  margin: auto;
+ 
+}
 .row{
-  margin-left: 0;
-  margin-right:0;
+  margin-left: 4vw;
+  margin-right: 4vw;
+}
+.btn-group-vertical{
+  margin: auto;
+  align-items: unset;
+  text-align: center;
 }
 @media (min-height: 1000px) and (min-width: 600px) {
   #root {

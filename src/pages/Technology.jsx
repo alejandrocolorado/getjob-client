@@ -1,11 +1,12 @@
 import React, { Component } from "react";
+import { withAuth } from "../lib/AuthProvider";
 
 export class Technology extends Component {
   constructor(props) {
     super(props);
     this.state = {
       tag: this.props.location.tag,
-      githubLink: ""
+      githubLink: "",
     };
   }
 
@@ -37,4 +38,4 @@ export class Technology extends Component {
   }
 }
 
-export default Technology;
+export default withAuth(Technology);

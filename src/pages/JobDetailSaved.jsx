@@ -7,7 +7,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 
-export class JobDetail extends Component {
+export class JobDetailSaved extends Component {
   
   state = {
       job: "",
@@ -19,37 +19,43 @@ export class JobDetail extends Component {
   }
 
   getJobApplication() {
+    const jobId = this.props.match.params.id
     axios
-      .get('http://localhost:4000/job/job-detail/:id')
+      .get(`http://localhost:4000/job/job-detail-saved/${jobId}`)
       .then((response) => {
+        //console.log('AQUI-------->', response.data)
         this.setState({
           job: response.data,
         });
+        
+        
       })
       .catch((error) => {
         this.setState({
           job: [],
         });
       });
+      
   }
 
-  // updateJob(jobId) {
-  //   axios
-  //     .post("http://localhost:4000/job/job-detail", jobId)
-  //     .then((response) => {
-  //       console.log(response);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // };
+  updateJob(jobId) {
+    axios
+      .post("http://localhost:4000/job/job-detail", jobId)
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
   
 
   render() {
-    console.log(this.props);
+    
     return (
       <div className="js-content section cover">
         <h3>{this.state.job.title}</h3>
+        
         <section>
           <div>
             <h5>Company name</h5>
@@ -79,20 +85,22 @@ export class JobDetail extends Component {
             >
               Check out more
             </a>
+            
           </div>
         </section>
 
         <section>
           <h2>TECHNOLOGIES</h2>
-          {this.state.job.tags.map((tag, i) => {
+          {console.log(this.state.job)}
+          {this.state.job.technologies && this.state.job.technologies.map((tag, i) => {
             let tagTo = {
-              pathname: `/technology/${tag.toLowerCase()}`,
+              pathname: `/technology/${tag.name.toLowerCase()}`,
               tag,
             };
             return (
               <div key={i}>
                 <img src="" alt="tech logo" style={{ width: 50 }} />
-                <h4>{tag}</h4>
+                {/* <h4>{tag}</h4> */}
                 <Link to={tagTo}>
                   <FontAwesomeIcon
                     className="icons"
@@ -104,9 +112,9 @@ export class JobDetail extends Component {
             );
           })}
         </section>
-        <button onClick={this.updateJob(this.job._id)}>Complete Application</button>
+        <button onClick={this.updateJob(this.state.job._id)}>Complete Application</button>
       </div>
     );
   }
 }
-export default withAuth(JobDetail);
+export default withAuth(JobDetailSaved);

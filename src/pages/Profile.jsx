@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { MDBBtn, MDBBtnGroup, MDBRow, MDBCol } from "mdbreact";
+import { MDBBtn, MDBBtnGroup} from "mdbreact";
 import { Link } from "react-router-dom";
 import { withAuth } from "../lib/AuthProvider";
 
@@ -8,30 +8,45 @@ export class Profile extends Component {
     const { user, logout, isLoggedin } = this.props;
     console.log(user);
     return (
-      <div className="js-content section cover">
+      
         <div id="profile">
           <div
             style={{ backgroundImage: `url(${user.image})` }}
             className="profile-pic"
           ></div>
-          <MDBRow center>
-            <MDBCol xl="2" lg="3" md="4" className="mb-md-0 mb-4">
+
+          <Link className='buttons-edit' to={"/edit-profile"}>
+            <MDBBtn color="dark-green" size="sm">
+              Edit Profile
+            </MDBBtn>
+          </Link>
+       
               <MDBBtnGroup vertical>
-                <Link to={"/edit-profile"}>
-                  <MDBBtn color="dark-green" size="sm">
-                    Edit Profile
+                <Link to={"/pending"}>
+                  <MDBBtn color="light-grey" size="sm">
+                    Pending Applications
                   </MDBBtn>
                 </Link>
-                <MDBBtn color="amber">Button</MDBBtn>
-                <MDBBtn color="amber">Button</MDBBtn>
-                <MDBBtn color="amber">Button</MDBBtn>
-                <MDBBtn color="amber">Button</MDBBtn>
-                <MDBBtn color="amber">Button</MDBBtn>
+                <Link to={"/completed"}>
+                  <MDBBtn color="light-grey" size="sm">
+                    Completed Applications
+                  </MDBBtn>
+                </Link>
+                <Link to={"'/portfolio'"}>
+                  <MDBBtn color="light-grey" size="sm">
+                    Go To Portfolio
+                  </MDBBtn>
+                </Link>
               </MDBBtnGroup>
-            </MDBCol>
-          </MDBRow>
+        
+          <Link className='buttons-logout' to={"/"}>
+          <br/>
+            <MDBBtn color="red" size="sm"  onClick={logout}>
+              Logout
+            </MDBBtn>
+          </Link>
         </div>
-      </div>
+      
     );
   }
 }
