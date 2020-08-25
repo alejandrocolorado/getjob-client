@@ -93,6 +93,7 @@ export class JobDetailSaved extends Component {
           <h2>TECHNOLOGIES</h2>
           {console.log(this.state.job)}
           {this.state.job.technologies && this.state.job.technologies.map((tag, i) => {
+            
             let tagTo = {
               pathname: `/technology/${tag.name.toLowerCase()}`,
               tag,
@@ -100,13 +101,14 @@ export class JobDetailSaved extends Component {
             return (
               <div key={i}>
                 <img src="" alt="tech logo" style={{ width: 50 }} />
-                {/* <h4>{tag}</h4> */}
+                <h4>{tag.name}</h4>
                 <Link to={tagTo}>
                   <FontAwesomeIcon
                     className="icons"
                     icon={faAngleDoubleRight}
                     style={{ style: "none" }}
                   />
+                  {console.log(tag)}
                 </Link>
               </div>
             );

@@ -91,13 +91,13 @@ export class JobDetail extends Component {
                 {this.dynamicImage(tag)}
 
                 <h4>{tag}</h4>
-                <Link to={`/technology/${tag.toLowerCase()}`}>
+                {/* <Link to={`/technology/${tag.toLowerCase()}`}>
                   <FontAwesomeIcon
                     className="icons"
                     icon={faAngleDoubleRight}
                     style={{ style: "none" }}
                   />
-                </Link>
+                </Link> */}
               </div>
             );
           })}
