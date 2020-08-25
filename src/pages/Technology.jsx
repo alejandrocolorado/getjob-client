@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { withAuth } from "../lib/AuthProvider";
 import techObjs from "./../helpers/techLinks.json";
+import axios from "axios";
 
 export class Technology extends Component {
   constructor(props) {
@@ -8,7 +9,8 @@ export class Technology extends Component {
     this.state = {
       tag: this.props.location.tag,
       tech: "",
-      githubLink: ""
+      githubLink: "",
+      job: this.props.location.job,
     };
   }
 
@@ -40,6 +42,23 @@ export class Technology extends Component {
     }
   }
 
+  UpdateJobAndPortfolio = (e) => {
+    e.preventDefault();
+    const user = this.props.user
+    const job = this.state.job
+    const githubLink = this.state.githubLink
+    const tag = this.state.tag
+    
+    axios
+      .post("http://localhost:4000/job/technology", {job, user, githubLink, tag})
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   render() {
     
     return (
@@ -48,17 +67,20 @@ export class Technology extends Component {
 
         <p>We require a relevant project on GitHub </p>
 
+        <form onSubmit={this.UpdateJobAndPortfolio}>
         <label htmlFor="defaultFormRegisterNameEx" className="grey-text">
           Here goes your link
         </label>
         <input
           type="text"
           name="githubLink"
-          //value={githubLink}
+          value={this.state.githubLink}
           onChange={this.handleChange}
           id="defaultFormRegisterNameEx"
           className="form-control"
         />
+        <input type="submit" value="Submit" />
+        </form>
         <p>
           <strong>No relevant project yet?</strong> No worries, create one with
           these awesome Udemy courses and then insert your repository
@@ -74,8 +96,8 @@ export class Technology extends Component {
         {this.state.tech && this.state.tech.courses.map((course, i) => {
           return (
             <article key={i}>
-            <img src={course.img} alt="course image" style={{width: 150}}/>
-            <h3>{course.title}</h3>
+            <img src={course.img} alt="course image" style={{width: 125}}/>
+            <h4>{course.title}</h4>
             <a
               rel="noopener noreferrer"
               target="_blank"
@@ -86,8 +108,16 @@ export class Technology extends Component {
             </article>
           )
         })}
-        
         </div>
+
+
+        {/* <button onClick={this.UpdateJobAndPortfolio()}>
+        <Link to={"/pending"}>
+          <MDBBtn color="light-grey" size="sm">
+          Submit
+          </MDBBtn>
+        </Link>
+        </button> */}
       </div>
     );
   }

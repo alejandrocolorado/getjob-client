@@ -97,6 +97,7 @@ export class JobDetailSaved extends Component {
             let tagTo = {
               pathname: `/technology/${tag.name.toLowerCase()}`,
               tag,
+              job: this.state.job,
             };
             return (
               <div key={i}>

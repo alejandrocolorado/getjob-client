@@ -21,8 +21,7 @@ export class PendingJobs extends Component {
   };
 
   deleteJob = (jobId) => {
-    console.log(jobId);
-    console.log(this.state);
+    
     const filtered = this.state.pendingJobs.filter((job) => job._id !== jobId);
     this.setState({
       pendingJobs: filtered,
