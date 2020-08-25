@@ -3,8 +3,12 @@ import { Link } from "react-router-dom";
 import { withAuth } from "../lib/AuthProvider";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faAngleDoubleRight
+  faAngleDoubleRight,
+  faReact,
+  faCoffee,
 } from "@fortawesome/free-solid-svg-icons";
+import { MDBBtn } from "mdbreact";
+
 import axios from "axios";
 
 export class ProjectDetail extends Component {
@@ -14,11 +18,25 @@ export class ProjectDetail extends Component {
       job: this.props.location.job,
     };
   }
+  dynamicImage = (tag) => {
+    tag.toLowerCase();
+    switch (tag) {
+      case "react":
+        return <FontAwesomeIcon icon={faCoffee} />;
+        break;
+      case "react":
+        return <FontAwesomeIcon icon={faCoffee} />;
+        break;
+
+      default:
+        break;
+    }
+  };
   render() {
     console.log(this.state);
     return (
       <div className="js-content section cover">
-        <h3 >{this.state.job.title}</h3>
+        <h3>{this.state.job.title}</h3>
         <section>
           <div>
             <h5>Company name</h5>
@@ -56,7 +74,8 @@ export class ProjectDetail extends Component {
           {this.state.job.tags.map((tag, i) => {
             return (
               <div key={i}>
-                <img src="" alt="tech logo" style={{ width: 50 }} />
+                {this.dynamicImage(tag)}
+
                 <h4>{tag}</h4>
                 <Link to={`/technology/${tag.toLowerCase()}`}>
                   <FontAwesomeIcon
@@ -69,6 +88,11 @@ export class ProjectDetail extends Component {
             );
           })}
         </section>
+        <Link to={"/pending"}>
+          <MDBBtn color="light-grey" size="sm">
+            Start application
+          </MDBBtn>
+        </Link>
       </div>
     );
   }

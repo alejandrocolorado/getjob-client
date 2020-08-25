@@ -42,8 +42,14 @@ export class PendingJobs extends Component {
                 </Link>
                 <p>{job.company_name}</p>
                 <ul>
-                  {job.technologies.map((tag) => {
-                    return <li>{tag.name}</li>;
+                  {job.technologies.map((tag, i) => {
+                    return (
+                      <div>
+                        {(tag.name === '') ?
+                        <br/> : <li key={i}>{tag.name}</li>
+                        }
+                      </div>
+                    );
                   })}
                 </ul>
                 <button onClick={() => this.deleteJob(job._id)}>Delete</button>

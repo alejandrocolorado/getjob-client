@@ -19,7 +19,7 @@ class Search extends Component {
   componentDidMount() {
     this.getJobList();
   }
-
+  
   getJobList() {
     axios({
       method: "post",
@@ -28,12 +28,13 @@ class Search extends Component {
         query: window.location.search,
       },
     })
-      .then((response) => {
-        this.setState({
-          jobs: response.data,
-        });
-      })
-      .catch((error) => {
+    .then((response) => {
+      this.setState({
+        jobs: response.data,
+      });
+
+    })
+    .catch((error) => {
         this.setState({
           jobs: [],
         });

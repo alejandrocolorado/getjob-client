@@ -8,6 +8,7 @@ import { withAuth } from "../lib/AuthProvider";
     faUserPlus,
     faSignInAlt,
     faSearch,
+   
   } from "@fortawesome/free-solid-svg-icons";
 
 class Navbar extends Component {
