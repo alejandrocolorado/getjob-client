@@ -2,29 +2,48 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { withAuth } from "../lib/AuthProvider";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faAngleDoubleRight } from "@fortawesome/free-solid-svg-icons";
+import {
+  faAngleDoubleRight
+} from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 
 export class JobDetail extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      job: this.props.location.job,
+  
+  state = {
+      job: "",
     };
+  
+
+  componentDidMount() {
+    this.getJobApplication();
   }
 
-  saveJob = (job) => {
-    const userId = this.props.user._id
-    console.log(userId)
+  getJobApplication() {
     axios
-      .post("http://localhost:4000/job/job-detail", {job, userId})
+      .get('http://localhost:4000/job/job-detail/:id')
       .then((response) => {
-        console.log(response);
+        this.setState({
+          job: response.data,
+        });
       })
-      .catch((err) => {
-        console.log(err);
+      .catch((error) => {
+        this.setState({
+          job: [],
+        });
       });
-  };
+  }
+
+  // updateJob(jobId) {
+  //   axios
+  //     .post("http://localhost:4000/job/job-detail", jobId)
+  //     .then((response) => {
+  //       console.log(response);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // };
+  
 
   render() {
     console.log(this.props);
@@ -66,11 +85,15 @@ export class JobDetail extends Component {
         <section>
           <h2>TECHNOLOGIES</h2>
           {this.state.job.tags.map((tag, i) => {
+            let tagTo = {
+              pathname: `/technology/${tag.toLowerCase()}`,
+              tag,
+            };
             return (
               <div key={i}>
                 <img src="" alt="tech logo" style={{ width: 50 }} />
                 <h4>{tag}</h4>
-                <Link to={`/technology/${tag.toLowerCase()}`}>
+                <Link to={tagTo}>
                   <FontAwesomeIcon
                     className="icons"
                     icon={faAngleDoubleRight}
@@ -81,12 +104,9 @@ export class JobDetail extends Component {
             );
           })}
         </section>
-        <button onClick={this.saveJob(this.state.job)}>
-          Save job as draft
-        </button>
+        <button onClick={this.updateJob(this.job._id)}>Complete Application</button>
       </div>
     );
   }
 }
-
 export default withAuth(JobDetail);

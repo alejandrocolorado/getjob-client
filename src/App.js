@@ -5,9 +5,8 @@ import { Switch } from "react-router-dom";
 import AuthProvider from "./lib/AuthProvider";
 
 import Navbar from "./components/Navbar";
-import Signup from "./pages/Signup.jsx";
-import Proving from './components/Proving'
-import Login from "./pages/Login.jsx";
+import Signup from './components/Signup'
+import Login from "./components/Login";
 import AnonRoute from "./components/AnonRoute";
 import PrivateRoute from "./components/PrivateRoute";
 import Profile from "./pages/Profile.jsx";
@@ -17,8 +16,9 @@ import EditProfile from "./pages/EditProfile.jsx";
 import PendingJobs from "./pages/PendingJobs.jsx";
 import CompletedJobs from "./pages/CompletedJobs.jsx";
 import Portfolio from "./pages/Portfolio.jsx";
-import ProjectDetail from "./pages/JobDetail.jsx";
+import JobDetail from "./pages/JobDetail.jsx";
 import Technology from "./pages/Technology.jsx";
+import JobDetailSaved from "./pages/JobDetailSaved.jsx";
 
 class App extends Component {
   render() {
@@ -29,7 +29,7 @@ class App extends Component {
 
           <Navbar/>
           <Switch>
-            <AnonRoute exact path="/signup" component={Proving} />
+            <AnonRoute exact path="/signup" component={Signup} />
             <AnonRoute exact path="/login" component={Login} />
             <PrivateRoute exact path="/options" component={Options} />
             <PrivateRoute path="/search" component={Search} />
@@ -38,8 +38,9 @@ class App extends Component {
             <PrivateRoute exact path="/pending" component={PendingJobs} />
             <PrivateRoute exact path="/completed" component={CompletedJobs} />
             <PrivateRoute exact path="/portfolio" component={Portfolio} />
-            <PrivateRoute exact path="/project-detail/:id" component={ProjectDetail} />
-            <PrivateRoute exact path="/project-detail/:tag" component={Technology} />
+            <PrivateRoute exact path="/job-detail/:id" component={JobDetail} />
+            <PrivateRoute exact path="/technology/:tag" component={Technology} />
+            <PrivateRoute exact path="/job-detail-saved/:id" component={JobDetailSaved} />
           </Switch>
           </div>
         </div>

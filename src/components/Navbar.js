@@ -1,14 +1,14 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { withAuth } from "../lib/AuthProvider";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faUser,
-  faFolderMinus,
-  faUserPlus,
-  faSignInAlt,
-  faSearch,
-} from "@fortawesome/free-solid-svg-icons";
+  import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+  import {
+    faUser,
+    faFolderMinus,
+    faUserPlus,
+    faSignInAlt,
+    faSearch,
+  } from "@fortawesome/free-solid-svg-icons";
 
 class Navbar extends Component {
   render() {

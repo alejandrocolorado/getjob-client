@@ -34,9 +34,29 @@ class Auth {
       .then(({ data }) => data);
   }
 
-  login({ email, password }) {
+  login({
+    firstname,
+    lastname,
+    email,
+    password: hashPass,
+    city,
+    country,
+    phone,
+    linkedin,
+    image,
+  }) {
     return this.auth
-      .post("/auth/login", { email, password })
+      .post("/auth/login", {
+        firstname,
+        lastname,
+        email,
+        password: hashPass,
+        city,
+        country,
+        phone,
+        linkedin,
+        image,
+      })
       .then(({ data }) => data);
   }
 

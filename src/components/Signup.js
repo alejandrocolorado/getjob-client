@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { withAuth } from "../lib/AuthProvider";
 import { MDBContainer, MDBRow, MDBCol, MDBBtn } from "mdbreact";
+import axios from "axios";
 
 class Signup extends Component {
   state = {
@@ -13,6 +14,7 @@ class Signup extends Component {
     phone: "",
     linkedin: "",
     image: "",
+    disable: true,
   };
 
   handleFormSubmit = (event) => {
@@ -47,6 +49,25 @@ class Signup extends Component {
     this.setState({ [name]: value });
   };
 
+  fileOnchange = (event) => {
+    //Consigue el archivo del form
+    const file = event.target.files[0];
+    //para enviar el objeto y añadir la imagen
+    const uploadData = new FormData();
+    uploadData.append("photo", file);
+
+    axios
+      .post("http://localhost:4000/auth/upload", uploadData, {
+        withCredentials: true,
+      })
+      .then((response) => {
+        this.setState({
+          image: response.data.secure_url,
+          disable: false,
+        });
+      })
+      .catch((error) => console.log(error));
+  };
   render() {
     const {
       firstname,
@@ -57,14 +78,14 @@ class Signup extends Component {
       country,
       phone,
       linkedin,
-      image,
+      disable,
     } = this.state;
     return (
-      <div>
+      <div className="js-content section cover">
         <MDBContainer>
           <MDBRow>
             <MDBCol md="6">
-              <form>
+              <form onSubmit={this.handleFormSubmit}>
                 <p className="h4 text-center mb-4">Sign Up</p>
                 <label
                   htmlFor="defaultFormRegisterNameEx"
@@ -133,7 +154,6 @@ class Signup extends Component {
                   Your link to Linkedin
                 </label>
                 <input
-                  type="password"
                   type="text"
                   name="linkedin"
                   value={linkedin}
@@ -176,6 +196,20 @@ class Signup extends Component {
                   htmlFor="defaultFormRegisterEmailEx"
                   className="grey-text"
                 >
+                  Image
+                </label>
+                <input
+                  type="file"
+                  onChange={this.fileOnchange}
+                  id="defaultFormRegisterEmailEx"
+                  className="grey-text"
+                ></input>
+                <br />
+                <br />
+                <label
+                  htmlFor="defaultFormRegisterEmailEx"
+                  className="grey-text"
+                >
                   Your Phone
                 </label>
                 <input
@@ -186,31 +220,28 @@ class Signup extends Component {
                   id="defaultFormRegisterEmailEx"
                   className="form-control"
                 />
-                <br />
-                <label
-                  htmlFor="defaultFormRegisterEmailEx"
-                  className="grey-text"
-                >
-                  Your Image
-                </label>
-                <input
-                  type="number"
-                  name="phone"
-                  value={phone}
-                  onChange={this.handleChange}
-                  id="defaultFormRegisterEmailEx"
-                  className="form-control"
-                />
+
                 <div className="text-center mt-4">
-                  <MDBBtn color="unique" value="Signup" type="submit">
-                    Register
-                  </MDBBtn>
+                  {disable ? (
+                    <MDBBtn
+                      color="unique"
+                      value="Signup"
+                      type="submit"
+                      disabled
+                    >
+                      Register
+                    </MDBBtn>
+                  ) : (
+                    <MDBBtn color="unique" value="Signup" type="submit">
+                      Register
+                    </MDBBtn>
+                  )}
                 </div>
               </form>
             </MDBCol>
           </MDBRow>
         </MDBContainer>
-        ;
+        <br/>
       </div>
     );
   }

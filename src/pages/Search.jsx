@@ -1,24 +1,44 @@
 import React, { Component } from "react";
 import { withAuth } from "../lib/AuthProvider";
-import axios from "axios";
+import {
+  MDBCard,
+  MDBCardBody,
+  MDBCardTitle,
+  MDBCardText,
+  MDBBtn,
+  MDBContainer,
+} from "mdbreact";
 import { Link } from "react-router-dom";
+import axios from "axios";
+import queryString from 'query-string';
 
 class Search extends Component {
-  state = {
+  constructor(props){
+    super(props);
+ 
+  this.state = {
     jobs: [],
   };
+
+}
+
+  
 
   componentDidMount() {
     this.getJobList();
   }
 
-  getJobList() {
+  getJobList(props) {
+   
+    const queryValues = queryString.parse(this.props.location.search)
+    console.log(queryValues)
     axios({
       method: "post",
       url: "http://localhost:4000/api/test",
       data: {
-        query: window.location.search,
+        query: this.props.location.search,
       },
+      
     })
       .then((response) => {
         this.setState({
@@ -35,27 +55,31 @@ class Search extends Component {
   render() {
     return (
       <div className="js-content section cover">
-        <h1>Welcome {this.props.user.firstname}</h1>
-
-        {this.state.jobs.map((job) => {
-          let newTo = {
-            pathname: `/project-detail/${job.id}`,
-            job,
-          }; 
-          return (
-            <div key={job.id}>
-              <a rel="noopener noreferrer" target="_blank" href={job.url}>
-                {job.url}
-              </a>
-              <ul>
-                <li>{job.tags[0]}</li>
-                <li>{job.tags[1]}</li>
-                <li>{job.tags[2]}</li>
-              </ul>
-              <Link to={newTo}>Check it out!</Link>
-            </div>
-          );
-        })}
+        <MDBContainer>
+          {this.state.jobs.map((job) => {
+            let newTo = {
+              pathname: `/job-detail/${job.id}`,
+              job,
+            };
+            return (
+              <MDBCard
+                style={{ marginTop: "1rem" }}
+                className="text-center"
+                key={job.id}
+              >
+                <MDBCardBody>
+                  <MDBCardTitle>{job.company_name}</MDBCardTitle>
+                  <MDBCardText>{job.title}</MDBCardText>
+                  <Link to={newTo}>
+                    {" "}
+                    <MDBBtn color="success" size="sm">Check out!</MDBBtn>
+                  </Link>
+                </MDBCardBody>
+              </MDBCard>
+            );
+          })}
+        </MDBContainer>
+        ;
       </div>
     );
   }

@@ -37,7 +37,7 @@ export class PendingJobs extends Component {
           {this.state.pendingJobs.map((job) => {
             return (
               <div key={job._id}>
-                <Link to={`/job-detail/${job._id}`}>
+                <Link to={`/job-detail-saved/${job._id}`}>
                   <h3>{job.title}</h3>
                 </Link>
                 <p>{job.company_name}</p>
