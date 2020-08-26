@@ -118,37 +118,7 @@ export class JobDetailSaved extends Component {
   render() {
     return (
       <div className="js-content section cover">
-        <h3>{this.state.job.title}</h3>
-
-        {/* <div>
-          <h5>Company name</h5>
-          <p>{this.state.job.company_name}</p>
-        </div>
-        <div>
-          <h5>Job type</h5>
-          <p>{this.state.job.title}</p>
-        </div>
-        <div>
-          <h5>Offer location</h5>
-          <p>{this.state.job.candidate_required_location}</p>
-        </div>
-        <div>
-          <h5>Publication date</h5>
-          <p>{this.state.job.publication_date}</p>
-        </div>
-        <div>
-          <h5>Publication date</h5>
-          <p>{this.state.job.salary}</p>
-        </div>
-        <div>
-          <a
-            rel="noopener noreferrer"
-            target="_blank"
-            href={this.state.job.url}
-          >
-            Check out more
-          </a>
-        </div> */}
+        <h3 className="job-title">{this.state.job.title}</h3>
 
         <Card className="text-center">
           <Card.Header></Card.Header>
@@ -161,8 +131,14 @@ export class JobDetailSaved extends Component {
             <Card.Text>{this.state.job.candidate_required_location}</Card.Text>
             <Card.Title>Publication date</Card.Title>
             <Card.Text>{this.state.job.publication_date}</Card.Text>
+            {this.state.job.salary !== ""
+            ? 
+            <>
             <Card.Title>Salary</Card.Title>
             <Card.Text>{this.state.job.salary}</Card.Text>
+            </>
+            : null
+            }
           </Card.Body>
           <Card.Footer className="text-muted"></Card.Footer>
         </Card>
