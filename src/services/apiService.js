@@ -16,6 +16,7 @@ class ApiService {
         return this.api.get('/user/pending')
     }
 
+
     getAllCompletedJobs = async () => {
         return this.api.get('/user/completed')
     }
@@ -32,3 +33,4 @@ class ApiService {
 const apiService = new ApiService ()
 
 export default apiService
+

@@ -3,6 +3,7 @@ import { withAuth } from "../lib/AuthProvider";
 import { MDBContainer, MDBRow, MDBCol, MDBBtn } from "mdbreact";
 import axios from "axios";
 
+
 class Signup extends Component {
   state = {
     firstname: "",

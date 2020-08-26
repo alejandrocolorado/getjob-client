@@ -1,50 +1,106 @@
-import React from 'react'
+import React from "react";
 import { Link } from "react-router-dom";
-
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faDesktop } from "@fortawesome/free-solid-svg-icons";
 import {
-  faAngleDoubleRight
-} from "@fortawesome/free-solid-svg-icons";
+  faReact,
+  faJsSquare,
+  faPhp,
+  faNodeJs,
+  faPython,
+  faCss3Alt,
+  faSketch,
+  faHtml5,
+  faFigma,
+  faUikit,
+} from "@fortawesome/free-brands-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faAngleDoubleRight } from "@fortawesome/free-solid-svg-icons";
 
-export const TechButton = ({tag, job}) => {
-    let tagTo = {
-        pathname: `/technology/${tag.name.toLowerCase()}`,
-        tag,
-        job,
-      };
-    return (
+export const TechButton = ({ tag, job }) => {
+  const tags = [
+    "frontend",
+    "CSS",
+    "react",
+    "javascript",
+    "php",
+    "node.js",
+    "python",
+    "sketch",
+    "ui",
+    "html",
+    "figma",
+  ];
 
-              <div>
-                
-                {
-                  tag.url === "" 
-                    ?
-                    <div> 
-                      <img src="" alt="tech logo" style={{ width: 50 }} />
-                      <h4>{tag.name}</h4> 
-                      <Link to={tagTo}>
-                        <FontAwesomeIcon
-                          className="icons"
-                          icon={faAngleDoubleRight}
-                          style={{ style: "none" }}
-                        />
-                        
-                      </Link>
-                    </div>
-                    :
-                    <div style={{backgroundColor: "green" }}>
-                      <img src="" alt="tech logo" style={{ width: 50 }} />
-                      <h4>{tag.name}</h4> 
-                      <FontAwesomeIcon
-                        className="icons"
-                        icon={faAngleDoubleRight}
-                        
-                      />
-                      
-                    </div>
-                    }
-              </div>
-    )
-}
+  const dynamicImage = (tag) => {
+ console.log(tag);
+    var returnvalue;
+    switch (tag) {
+      case "react":
+        returnvalue = <FontAwesomeIcon icon={faReact} />;
+        break;
+      case "javascript":
+        returnvalue = <FontAwesomeIcon icon={faJsSquare} />;
+        break;
+      case "php":
+        returnvalue = <FontAwesomeIcon icon={faPhp} />;
+        break;
+      case "node.js":
+        returnvalue = <FontAwesomeIcon icon={faNodeJs} />;
+        break;
+      case "CSS":
+        returnvalue = <FontAwesomeIcon icon={faCss3Alt} />;
+        break;
+      case "python":
+        returnvalue = <FontAwesomeIcon icon={faPython} />;
+        break;
+      case "frontend":
+        returnvalue = <FontAwesomeIcon icon={faDesktop} />;
+        break;
+      case "sketch":
+        returnvalue = <FontAwesomeIcon icon={faSketch} />;
+        break;
+      case "html":
+        returnvalue = <FontAwesomeIcon icon={faHtml5} />;
+        break;
+      case "figma":
+        returnvalue = <FontAwesomeIcon icon={faFigma} />;
+        break;
+      case "ui":
+        returnvalue = <FontAwesomeIcon icon={faUikit} />;
+        break;
+      default:
+        break;
+    }
+    return returnvalue;
+  };
+  let tagTo = {
+    pathname: `/technology/${tag.name.toLowerCase()}`,
+    tag,
+    job,
+  };
+  return (
+    <div>
+      {tag.url === ""  ? (
+        <div>
+          {dynamicImage(tag.name)}
+          <h4>{tag.name}</h4>
+          <Link to={tagTo}>
+            <FontAwesomeIcon
+              className="icons"
+              icon={faAngleDoubleRight}
+              style={{ style: "none" }}
+            />
+          </Link>
+        </div>
+      ) : (
+        <div style={{ backgroundColor: "green" }}>
+          <img src="" alt="tech logo" style={{ width: 50 }} />
+          <h4>{tag.name}</h4>
+          <FontAwesomeIcon className="icons" icon={faAngleDoubleRight} />
+        </div>
+      )}
+    </div>
+  );
+};
 
-export default TechButton
+export default TechButton;

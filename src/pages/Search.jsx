@@ -10,43 +10,37 @@ import {
 } from "mdbreact";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import queryString from 'query-string';
+import queryString from "query-string";
 
 class Search extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
- 
-  this.state = {
-    jobs: [],
-  };
 
-}
-
-  
+    this.state = {
+      jobs: [],
+    };
+  }
 
   componentDidMount() {
     this.getJobList();
   }
 
   getJobList(props) {
-   
-    const queryValues = queryString.parse(this.props.location.search)
-    console.log(queryValues)
+    const queryValues = queryString.parse(this.props.location.search);
+    console.log(queryValues);
     axios({
       method: "post",
       url: "http://localhost:4000/api/test",
       data: {
         query: this.props.location.search,
       },
-      
     })
-    .then((response) => {
-      this.setState({
-        jobs: response.data,
-      });
-
-    })
-    .catch((error) => {
+      .then((response) => {
+        this.setState({
+          jobs: response.data,
+        });
+      })
+      .catch((error) => {
         this.setState({
           jobs: [],
         });
@@ -72,15 +66,15 @@ class Search extends Component {
                   <MDBCardTitle>{job.company_name}</MDBCardTitle>
                   <MDBCardText>{job.title}</MDBCardText>
                   <Link to={newTo}>
-                    {" "}
-                    <MDBBtn color="success" size="sm">Check out!</MDBBtn>
+                    <MDBBtn color="success" size="sm">
+                      Check out!
+                    </MDBBtn>
                   </Link>
                 </MDBCardBody>
               </MDBCard>
             );
           })}
         </MDBContainer>
-        
       </div>
     );
   }

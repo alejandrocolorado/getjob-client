@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { withAuth } from "../lib/AuthProvider";
 import techObjs from "./../helpers/techLinks.json";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 export class Technology extends Component {
   constructor(props) {
@@ -48,9 +49,8 @@ export class Technology extends Component {
     const job = this.state.job
     const githubLink = this.state.githubLink
     const tag = this.state.tag
-    
     axios
-      .post("http://localhost:4000/job/technology", {job, user, githubLink, tag})
+      .post("http://localhost:4000/job/job-detail/technology", {job, user, githubLink, tag})
       .then((response) => {
         console.log(response);
       })
@@ -96,7 +96,7 @@ export class Technology extends Component {
         {this.state.tech && this.state.tech.courses.map((course, i) => {
           return (
             <article key={i}>
-            <img src={course.img} alt="course image" style={{width: 125}}/>
+            <img src={course.img} alt="course" style={{width: 125}}/>
             <h4>{course.title}</h4>
             <a
               rel="noopener noreferrer"
@@ -110,6 +110,7 @@ export class Technology extends Component {
         })}
         </div>
 
+    
 
         {/* <button onClick={this.UpdateJobAndPortfolio()}>
         <Link to={"/pending"}>

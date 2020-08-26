@@ -2,8 +2,42 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { withAuth } from "../lib/AuthProvider";
 import apiService from "./../../src/services/apiService";
-import axiosRequestFunctions from "../lib/auth-service";
-
+import {
+  MDBCard,
+  MDBCardBody,
+  MDBCardTitle,
+  MDBCardText,
+  MDBBtn,
+  MDBContainer,
+} from "mdbreact";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faDesktop } from "@fortawesome/free-solid-svg-icons";
+import {
+  faReact,
+  faJsSquare,
+  faPhp,
+  faNodeJs,
+  faPython,
+  faCss3Alt,
+  faSketch,
+  faHtml5,
+  faFigma,
+  faUikit,
+} from "@fortawesome/free-brands-svg-icons";
+import axios from "axios";
+const tags = [
+  "frontend",
+  "CSS",
+  "react",
+  "javascript",
+  "php",
+  "node.js",
+  "python",
+  "sketch",
+  "ui",
+  "html",
+  "figma",
+];
 export class PendingJobs extends Component {
   state = {
     pendingJobs: [],
@@ -13,17 +47,69 @@ export class PendingJobs extends Component {
     this.getPendingJobs();
   }
 
+  dynamicImage = (tag) => {
+    tag.toLowerCase();
+    var returnvalue;
+    switch (tag) {
+      case "react":
+        returnvalue = <FontAwesomeIcon icon={faReact} />;
+        break;
+      case "javascript":
+        returnvalue = <FontAwesomeIcon icon={faJsSquare} />;
+        break;
+      case "php":
+        returnvalue = <FontAwesomeIcon icon={faPhp} />;
+        break;
+      case "node.js":
+        returnvalue = <FontAwesomeIcon icon={faNodeJs} />;
+        break;
+      case "CSS":
+        returnvalue = <FontAwesomeIcon icon={faCss3Alt} />;
+        break;
+      case "python":
+        returnvalue = <FontAwesomeIcon icon={faPython} />;
+        break;
+      case "frontend":
+        returnvalue = <FontAwesomeIcon icon={faDesktop} />;
+        break;
+      case "sketch":
+        returnvalue = <FontAwesomeIcon icon={faSketch} />;
+        break;
+      case "html":
+        returnvalue = <FontAwesomeIcon icon={faHtml5} />;
+        break;
+      case "figma":
+        returnvalue = <FontAwesomeIcon icon={faFigma} />;
+        break;
+      case "ui":
+        returnvalue = <FontAwesomeIcon icon={faUikit} />;
+        break;
+      default:
+        break;
+    }
+    return returnvalue;
+  };
   getPendingJobs = async () => {
     const pendingJobsObj = await apiService.getAllPendingJobs();
-    console.log("Aqui------->", pendingJobsObj);
+
     this.setState({
       pendingJobs: pendingJobsObj.data,
     });
   };
 
   deleteJob = (jobId) => {
+    console.log(jobId);
+    axios
+    .delete(`http://localhost:4000/user/pending/${jobId}`)
+    .then((response) => {
+      console.log(response);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
     
     const filtered = this.state.pendingJobs.filter((job) => job._id !== jobId);
+    console.log(filtered);
     this.setState({
       pendingJobs: filtered,
     });
@@ -31,35 +117,52 @@ export class PendingJobs extends Component {
 
   render() {
     return (
-      <div>
-        <h2>Pending Job Applications</h2>
-        <div>
+      <div className="js-content section cover">
+        <div className="titles">
+          <h2>Pending Jobs</h2>
+        </div>
+        <MDBContainer>
           {this.state.pendingJobs.map((job) => {
             return (
-              <div key={job._id}>
-                <Link to={`/job-detail-saved/${job._id}`}>
-                  <h3>{job.title}</h3>
-                </Link>
-                <p>{job.company_name}</p>
-                <ul>
-                  {job.technologies.map((tag, i) => {
-                    return (
-                      <div>
-                        {(tag.name === '' ) ?
-                        <br/> : <li key={i}>{tag.name}</li>
-                        }
-                      </div>
-                      
-                    );
-                  })}
-                </ul>
-                <button onClick={() => this.deleteJob(job._id)}>Delete</button>
+              <MDBCard
+                style={{ marginTop: "1rem" }}
+                className="text-center"
+                key={job.id}
+              >
+                <MDBCardBody>
+                  <MDBCardTitle>{job.company_name}</MDBCardTitle>
+                  <MDBCardText>{job.title}</MDBCardText>
 
-                {/* <p style={{maxWidth: '400px'}} >{project.description} </p> */}
-              </div>
+                  <div className="techs">
+                    {job.tags &&
+                      job.tags.map((tag, i) => {
+                        return tags.includes(tag) ? (
+                          <div className="childrenTechs" key={i}>
+                            {this.dynamicImage(tag)}
+                          </div>
+                        ) : (
+                          <br style={{ display: "none" }} key={i} />
+                        );
+                      })}
+                  </div>
+                  <hr />
+                  <MDBBtn
+                    onClick={() => this.deleteJob(job._id)}
+                    color="red"
+                    size="sm"
+                  >
+                    Delete it
+                  </MDBBtn>
+                  <Link to={`/job-detail-saved/${job._id}`}>
+                    <MDBBtn color="success" size="sm">
+                      Complete it
+                    </MDBBtn>
+                  </Link>
+                </MDBCardBody>
+              </MDBCard>
             );
           })}
-        </div>
+        </MDBContainer>
       </div>
     );
   }

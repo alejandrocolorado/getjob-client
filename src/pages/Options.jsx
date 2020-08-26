@@ -3,7 +3,6 @@ import Button from "react-bootstrap/Button";
 import { withAuth } from "../lib/AuthProvider";
 import { Link } from "react-router-dom";
 
-
 const queryObject = {
   category: null,
   tags: [],
@@ -19,7 +18,7 @@ const tagsSoftware = [
   "node.js",
   "python",
 ];
-const tagsDesign = ["sketch", "UI/UX", "html", "Figma", "CSS"];
+const tagsDesign = ["sketch", "ui", "html", "Figma", "CSS"];
 
 const categories = ["design", "software-dev"];
 
@@ -91,16 +90,17 @@ function Options() {
           <Category category={el} onClick={() => onClickCategory(el)} />
         </Button>
       ))}
-      <div>
+      <div className="tags">
         {state.category &&
           renderTags(state.category === "design" ? tagsDesign : tagsSoftware)}
       </div>
-
-      <Link to={`/search${buildQuery()}`}>
-        <Button color="grey" size="sm">
-          Common!
-        </Button>
-      </Link>
+      <div className='button-options'>
+        <Link to={`/search${buildQuery()}`}>
+          <Button color="grey" size="sm">
+            Common!
+          </Button>
+        </Link>
+      </div>
     </div>
   );
 }

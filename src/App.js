@@ -5,7 +5,7 @@ import { Switch } from "react-router-dom";
 import AuthProvider from "./lib/AuthProvider";
 
 import Navbar from "./components/Navbar";
-import Signup from './components/Signup'
+import Signup from "./components/Signup";
 import Login from "./components/Login";
 import AnonRoute from "./components/AnonRoute";
 import PrivateRoute from "./components/PrivateRoute";
