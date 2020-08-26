@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { withAuth } from "../lib/AuthProvider";
 import apiService from "./../../src/services/apiService";
+import axiosRequestFunctions from "../lib/auth-service";
 
 export class PendingJobs extends Component {
   state = {
