@@ -141,6 +141,16 @@ ul {
   padding-left: 0;
   padding-right: 0;
 }
+.tags{
+  margin-top: 5vw;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  text-transform: uppercase;
+}
+.button-options{
+  margin: auto;
+}
 @media (min-height: 1000px) and (min-width: 600px) {
   #root {
     height: 900px;

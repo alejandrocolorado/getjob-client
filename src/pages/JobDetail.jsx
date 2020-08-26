@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { withAuth } from "../lib/AuthProvider";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import axios from "axios";
 import {
   faDesktop,
 } from "@fortawesome/free-solid-svg-icons";
@@ -18,7 +19,7 @@ import {
   faUikit,
 } from "@fortawesome/free-brands-svg-icons";
 import { MDBBtn } from "mdbreact";
-import axios from 'axios';
+
 
 const tags = [
   "frontend",

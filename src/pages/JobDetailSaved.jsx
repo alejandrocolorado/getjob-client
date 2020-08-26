@@ -18,6 +18,7 @@ import {
 } from "@fortawesome/free-brands-svg-icons";
 import { MDBBtn } from "mdbreact";
 import axios from "axios";
+import TechButton from "./../components/TechButton"
 
 const tags = [
   "frontend",
@@ -147,29 +148,13 @@ export class JobDetailSaved extends Component {
           </a>
         </div>
 
-        <h2>TECHNOLOGIES</h2>
-
-        {this.state.job.technologies &&
-          this.state.job.technologies.map((tag, i) => {
-            let tagTo = {
-              pathname: `/technology/${tag.name.toLowerCase()}`,
-              tag,
-            };
-
-            return tags.includes(tag.name) ? (
-              <div key={i}>
-                {this.dynamicImage(tag.name)}
-                <h4>{tag.name.toUpperCase()}</h4>
-                <Link to={tagTo}>
-                  <FontAwesomeIcon
-                    className="icons"
-                    icon={faAngleDoubleRight}
-                    style={{ style: "none" }}
-                  />
-                </Link>
-              </div>
-            ) : (
-              <br style={{ display: "none" }} key={i} />
+       
+          <h2>TECHNOLOGIES</h2>
+         
+          {this.state.job.technologies && this.state.job.technologies.map((tag, i) => {
+            return (
+              <TechButton job={this.state.job} tag={tag} key={i}/>
+              
             );
           })}
 
@@ -187,3 +172,14 @@ export class JobDetailSaved extends Component {
   }
 }
 export default withAuth(JobDetailSaved);
+
+{/* <div key={i}>
+                {this.dynamicImage(tag.name)}
+                <h4>{tag.name.toUpperCase()}</h4>
+                <Link to={tagTo}>
+                  <FontAwesomeIcon
+                    className="icons"
+                    icon={faAngleDoubleRight}
+                    style={{ style: "none" }}
+                  />
+                </Link> */}
