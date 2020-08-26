@@ -100,7 +100,7 @@ export class PendingJobs extends Component {
   deleteJob = (jobId) => {
     console.log(jobId);
     axios
-    .delete(`http://localhost:4000/user/pending/${jobId}`)
+    .delete(`${process.env.REACT_APP_API_URL}/user/pending/${jobId}`)
     .then((response) => {
       console.log(response);
     })

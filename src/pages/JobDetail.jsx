@@ -48,7 +48,7 @@ export class JobDetail extends Component {
     const userId = this.props.user._id
     
     axios
-      .post("http://localhost:4000/job/job-detail", {job, userId})
+      .post(`${process.env.REACT_APP_API_URL}/job/job-detail`, {job, userId})
       .then((response) => {
         console.log(response);
       })

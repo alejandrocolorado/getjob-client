@@ -30,7 +30,7 @@ class Search extends Component {
     console.log(queryValues);
     axios({
       method: "post",
-      url: "http://localhost:4000/api/test",
+      url: `${process.env.REACT_APP_API_URL}/api/test`,
       data: {
         query: this.props.location.search,
       },
