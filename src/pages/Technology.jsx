@@ -26,7 +26,7 @@ export class Technology extends Component {
 
   getTech() {
     techObjs.map((elem) => {
-      if (elem.name === this.state.tag.name) {
+      if (elem.name === this.state.tag.name.toLowerCase()) {
         this.setState({
           tech: elem,
         });
@@ -53,6 +53,7 @@ export class Technology extends Component {
       .post("http://localhost:4000/job/job-detail/technology", {job, user, githubLink, tag})
       .then((response) => {
         console.log(response);
+        this.props.history.push(`/job-detail-saved/${this.state.job._id}`)
       })
       .catch((err) => {
         console.log(err);
@@ -67,7 +68,7 @@ export class Technology extends Component {
 
         <p>We require a relevant project on GitHub </p>
 
-        <form onSubmit={this.UpdateJobAndPortfolio}>
+        <form onSubmit={this.UpdateJobAndPortfolio} >
         <label htmlFor="defaultFormRegisterNameEx" className="grey-text">
           Here goes your link
         </label>

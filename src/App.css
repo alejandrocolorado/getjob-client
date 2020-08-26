@@ -162,18 +162,58 @@ ul {
   background-image: url("/images/double-bubble-outline.png");
   background-size: cover;
   background-repeat: no-repeat;
-  
+}
+
+.tech-header{
+  padding: 30px 0;
+  text-align: center;
+  font-weight: bold;
+  margin: 0;
+  background-color: #eee;
+
 }
 .container{
   padding-left: 0;
   padding-right: 0;
 }
+.main-btn-wrapper{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  padding: 0 0 20px 0;
+}
+.main-category-btn{
+  height: 100px;
+  width: 40%;
+  font-weight: bold;
+}
+
+.search-title{
+  padding: 30px 0;
+  text-align: center;
+  font-weight: bold;
+  background-image: url("/images/double-bubble-outline.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.search-content{
+  text-align: center;
+}
+
+.tags-wrapper{
+  
+}
+
 .tags{
-  margin-top: 5vw;
+  
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-evenly;
+  justify-content: center;
+  align-items: center;
   text-transform: uppercase;
+  border-color: rgb(100, 100, 100);
+  width: 100%;
 }
 .button-options{
   margin: auto;
