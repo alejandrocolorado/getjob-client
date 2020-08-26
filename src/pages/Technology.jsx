@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { withAuth } from "../lib/AuthProvider";
 import techObjs from "./../helpers/techLinks.json";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 export class Technology extends Component {
   constructor(props) {
@@ -109,6 +110,7 @@ export class Technology extends Component {
         })}
         </div>
 
+    
 
         {/* <button onClick={this.UpdateJobAndPortfolio()}>
         <Link to={"/pending"}>

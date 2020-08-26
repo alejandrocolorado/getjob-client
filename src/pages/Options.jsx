@@ -18,7 +18,7 @@ const tagsSoftware = [
   "node.js",
   "python",
 ];
-const tagsDesign = ["sketch", "UI/UX", "html", "Figma", "CSS"];
+const tagsDesign = ["sketch", "ui", "html", "Figma", "CSS"];
 
 const categories = ["design", "software-dev"];
 

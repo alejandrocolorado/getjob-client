@@ -29,7 +29,7 @@ const tags = [
   "node.js",
   "python",
   "sketch",
-  "UI/UX",
+  "ui",
   "html",
   "figma",
 ];
@@ -104,7 +104,7 @@ export class JobDetailSaved extends Component {
       case "figma":
         returnvalue = <FontAwesomeIcon icon={faFigma} />;
         break;
-      case "UI/UX":
+      case "ui":
         returnvalue = <FontAwesomeIcon icon={faUikit} />;
         break;
       default:
