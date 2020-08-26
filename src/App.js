@@ -19,6 +19,7 @@ import Portfolio from "./pages/Portfolio.jsx";
 import JobDetail from "./pages/JobDetail.jsx";
 import Technology from "./pages/Technology.jsx";
 import JobDetailSaved from "./pages/JobDetailSaved.jsx";
+import Home from "./pages/Home.jsx";
 
 class App extends Component {
   render() {
@@ -29,6 +30,7 @@ class App extends Component {
 
           <Navbar/>
           <Switch>
+            <AnonRoute exact path="/" component={Home} />
             <AnonRoute exact path="/signup" component={Signup} />
             <AnonRoute exact path="/login" component={Login} />
             <PrivateRoute exact path="/options" component={Options} />
