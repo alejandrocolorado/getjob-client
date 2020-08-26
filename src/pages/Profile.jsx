@@ -32,7 +32,7 @@ export class Profile extends Component {
                     Completed Applications
                   </MDBBtn>
                 </Link>
-                <Link to={"'/portfolio'"}>
+                <Link to={"/portfolio"}>
                   <MDBBtn color="light-grey" size="sm">
                     Go To Portfolio
                   </MDBBtn>

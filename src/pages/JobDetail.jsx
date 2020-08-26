@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { withAuth } from "../lib/AuthProvider";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faAngleDoubleRight,
   faDesktop,
 } from "@fortawesome/free-solid-svg-icons";
 import {
@@ -14,8 +13,12 @@ import {
   faPython,
   faCss3Alt,
   faSketch,
+  faHtml5,
+  faFigma,
+  faUikit,
 } from "@fortawesome/free-brands-svg-icons";
 import { MDBBtn } from "mdbreact";
+import axios from 'axios';
 
 const tags = [
   "frontend",
@@ -54,40 +57,49 @@ export class JobDetail extends Component {
 
   dynamicImage = (tag) => {
     tag.toLowerCase();
+    var returnvalue
     switch (tag) {
       case "react":
-        return <FontAwesomeIcon icon={faReact} />;
+        returnvalue= <FontAwesomeIcon icon={faReact} />;
         break;
       case "javascript":
-        return <FontAwesomeIcon icon={faJsSquare} />;
+        returnvalue = <FontAwesomeIcon icon={faJsSquare} />;
         break;
       case "php":
-        return <FontAwesomeIcon icon={faPhp} />;
+        returnvalue = <FontAwesomeIcon icon={faPhp} />;
         break;
       case "node.js":
-        return <FontAwesomeIcon icon={faNodeJs} />;
+        returnvalue = <FontAwesomeIcon icon={faNodeJs} />;
         break;
       case "CSS":
-        return <FontAwesomeIcon icon={faCss3Alt} />;
+        returnvalue = <FontAwesomeIcon icon={faCss3Alt} />;
         break;
       case "python":
-        return <FontAwesomeIcon icon={faPython} />;
+        returnvalue = <FontAwesomeIcon icon={faPython} />;
         break;
       case "frontend":
-        return <FontAwesomeIcon icon={faDesktop} />;
+        returnvalue = <FontAwesomeIcon icon={faDesktop} />;
         break;
       case "sketch":
-        return <FontAwesomeIcon icon={faSketch} />;
+        returnvalue = <FontAwesomeIcon icon={faSketch} />;
         break;
-      case "sketch":
-        return <FontAwesomeIcon icon={faSketch} />;
+      case "html":
+        returnvalue = <FontAwesomeIcon icon={faHtml5} />;
         break;
+        case "figma":
+        returnvalue =<FontAwesomeIcon icon={faFigma} />;
+        break;
+        case "UI/UX":
+          returnvalue = <FontAwesomeIcon icon={faUikit} />;
+          break;
       default:
         break;
     }
+    return returnvalue
   };
+
   render() {
-    console.log(this.props);
+   
     return (
       <div className="js-content section cover">
         <h3>{this.state.job.title}</h3>
@@ -130,29 +142,19 @@ export class JobDetail extends Component {
             return tags.includes(tag) ? (
               <div key={i}>
                 {this.dynamicImage(tag)}
-                <h4>{tag}</h4>
-                {/* <Link to={`/technology/${tag.toLowerCase()}`}>
-                  <FontAwesomeIcon
-                    className="icons"
-                    icon={faAngleDoubleRight}
-                    style={{ style: "none" }}
-                  />
-                </Link>
-                {console.log(this.state.job.tags)}
-                </Link> */}
+                <h4>{tag.toUpperCase()}</h4>
+              
               </div>
             ) : (
-              <br key={i} />
+              <br style={{display:'none'}} key={i} />
             );
           })}
         </section>
-        <button onClick={this.saveJob(this.state.job)}>
         <Link to={"/pending"}>
-          <MDBBtn color="light-grey" size="sm">
+          <MDBBtn onClick={this.saveJob(this.state.job)} color="light-grey" size="sm">
           Save job as draft
           </MDBBtn>
         </Link>
-        </button>
       </div>
     );
   }

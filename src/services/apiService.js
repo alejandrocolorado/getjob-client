@@ -16,6 +16,7 @@ class ApiService {
         return this.api.get('/user/pending')
     }
 
+
     getAllCompletedJobs = async () => {
         return this.api.get('/user/completed')
     }
