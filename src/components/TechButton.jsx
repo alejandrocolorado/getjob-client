@@ -62,7 +62,7 @@ export const TechButton = ({ tag, job }) => {
       case "html":
         returnvalue = <FontAwesomeIcon icon={faHtml5} />;
         break;
-      case "figma":
+      case "Figma":
         returnvalue = <FontAwesomeIcon icon={faFigma} />;
         break;
       case "ui":

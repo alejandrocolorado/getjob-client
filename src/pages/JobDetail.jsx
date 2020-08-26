@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Button, Card } from 'react-bootstrap';
 import { Link } from "react-router-dom";
 import { withAuth } from "../lib/AuthProvider";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -20,7 +21,7 @@ import { MDBBtn } from "mdbreact";
 
 const tags = [
   "frontend",
-  "CSS",
+  "css",
   "react",
   "javascript",
   "php",
@@ -54,8 +55,8 @@ export class JobDetail extends Component {
   };
 
   dynamicImage = (tag) => {
-    tag.toLowerCase();
-    var returnvalue;
+   
+    var returnvalue
     switch (tag) {
       case "react":
         returnvalue = <FontAwesomeIcon icon={faReact} />;
@@ -69,7 +70,7 @@ export class JobDetail extends Component {
       case "node.js":
         returnvalue = <FontAwesomeIcon icon={faNodeJs} />;
         break;
-      case "CSS":
+      case "css":
         returnvalue = <FontAwesomeIcon icon={faCss3Alt} />;
         break;
       case "python":
@@ -99,6 +100,19 @@ export class JobDetail extends Component {
   render() {
     return (
       <div className="js-content section cover">
+
+
+<Card className="text-center">
+  <Card.Header>Featured</Card.Header>
+  <Card.Body>
+    <Card.Title>Special title treatment</Card.Title>
+    <Card.Text>
+      With supporting text below as a natural lead-in to additional content.
+    </Card.Text>
+ 
+  </Card.Body>
+  <Card.Footer className="text-muted">2 days ago</Card.Footer>
+</Card>
         <h3>{this.state.job.title}</h3>
         <section>
           <div>

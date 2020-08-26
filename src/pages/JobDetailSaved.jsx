@@ -1,5 +1,7 @@
-import React, { Component} from "react";
+import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import { Card } from "react-bootstrap";
+
 import { withAuth } from "../lib/AuthProvider";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleDoubleRight } from "@fortawesome/free-solid-svg-icons";
@@ -18,7 +20,7 @@ import {
 } from "@fortawesome/free-brands-svg-icons";
 import { MDBBtn } from "mdbreact";
 import axios from "axios";
-import TechButton from "./../components/TechButton"
+import TechButton from "./../components/TechButton";
 
 const tags = [
   "frontend",
@@ -118,7 +120,7 @@ export class JobDetailSaved extends Component {
       <div className="js-content section cover">
         <h3>{this.state.job.title}</h3>
 
-        <div>
+        {/* <div>
           <h5>Company name</h5>
           <p>{this.state.job.company_name}</p>
         </div>
@@ -146,16 +148,30 @@ export class JobDetailSaved extends Component {
           >
             Check out more
           </a>
-        </div>
+        </div> */}
 
-       
-          <h2>TECHNOLOGIES</h2>
-         
-          {this.state.job.technologies && this.state.job.technologies.map((tag, i) => {
-            return (
-              <TechButton job={this.state.job} tag={tag} key={i}/>
-              
-            );
+        <Card className="text-center">
+          <Card.Header></Card.Header>
+          <Card.Body>
+            <Card.Title>Company name</Card.Title>
+            <Card.Text>{this.state.job.company_name}</Card.Text>
+            <Card.Title>Job type</Card.Title>
+            <Card.Text>{this.state.job.title}</Card.Text>
+            <Card.Title>Offer location</Card.Title>
+            <Card.Text>{this.state.job.candidate_required_location}</Card.Text>
+            <Card.Title>Publication date</Card.Title>
+            <Card.Text>{this.state.job.publication_date}</Card.Text>
+            <Card.Title>Salary</Card.Title>
+            <Card.Text>{this.state.job.salary}</Card.Text>
+          </Card.Body>
+          <Card.Footer className="text-muted"></Card.Footer>
+        </Card>
+
+        <h2>TECHNOLOGIES</h2>
+
+        {this.state.job.technologies &&
+          this.state.job.technologies.map((tag, i) => {
+            return <TechButton job={this.state.job} tag={tag} key={i} />;
           })}
 
         <Link to={"/pending"}>
@@ -172,14 +188,3 @@ export class JobDetailSaved extends Component {
   }
 }
 export default withAuth(JobDetailSaved);
-
-{/* <div key={i}>
-                {this.dynamicImage(tag.name)}
-                <h4>{tag.name.toUpperCase()}</h4>
-                <Link to={tagTo}>
-                  <FontAwesomeIcon
-                    className="icons"
-                    icon={faAngleDoubleRight}
-                    style={{ style: "none" }}
-                  />
-                </Link> */}

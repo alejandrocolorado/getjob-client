@@ -23,17 +23,17 @@ export class Profile extends Component {
        
               <MDBBtnGroup vertical>
                 <Link to={"/pending"}>
-                  <MDBBtn color="light-grey" size="sm">
+                  <MDBBtn className="text-dark profile-button" color="light-grey" size="sm">
                     Pending Applications
                   </MDBBtn>
                 </Link>
                 <Link to={"/completed"}>
-                  <MDBBtn color="light-grey" size="sm">
+                  <MDBBtn className="text-dark profile-button" color="light-grey" size="sm">
                     Completed Applications
                   </MDBBtn>
                 </Link>
                 <Link to={"/portfolio"}>
-                  <MDBBtn color="light-grey" size="sm">
+                  <MDBBtn className="text-dark profile-button" color="light-grey" size="sm">
                     Go To Portfolio
                   </MDBBtn>
                 </Link>
