@@ -62,7 +62,7 @@ export const TechButton = ({ tag, job }) => {
       case "html":
         returnvalue = <FontAwesomeIcon icon={faHtml5} />;
         break;
-      case "figma":
+      case "Figma":
         returnvalue = <FontAwesomeIcon icon={faFigma} />;
         break;
       case "ui":
@@ -82,7 +82,7 @@ export const TechButton = ({ tag, job }) => {
     <div>
       {tag.url === ""  ? (
         <div>
-          {dynamicImage()}
+          {dynamicImage(tag.name)}
           <h4>{tag.name}</h4>
           <Link to={tagTo}>
             <FontAwesomeIcon
