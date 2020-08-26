@@ -6,6 +6,8 @@
   box-sizing: border-box;
   -webkit-user-select: none;
   user-select: none;
+ 
+ 
 }
 .icons {
   color: black;
@@ -19,6 +21,7 @@
   flex-grow: 0;
   min-height: 100%;
   overflow: auto;
+  
 }
 #root,
 .cover {
@@ -28,14 +31,15 @@
   flex-grow: 1;
   background: #ffff;
   overflow: hidden;
+
 }
 
-.mainWrapper,
+.mainWrapper, 
 body {
   min-height: 100%;
   height: inherit;
-  /*  background: url( /images/18238.jpg ) no-repeat center center fixed; */
-  background-color: rgb(231, 223, 212);
+  background: url( /images/bg2.png ) no-repeat center center fixed;   
+  /* background-color: rgb(231, 223, 212); */
   background-size: cover;
   -moz-background-size: cover;
   -webkit-background-size: cover;
@@ -49,6 +53,7 @@ body {
   -webkit-font-smoothing: antialiased;
   color: black;
   overscroll-behavior: contain;
+  
 }
 .app.js-content {
   padding-top: 6vw;
@@ -154,15 +159,18 @@ ul {
   margin-top: 2vw;
   text-align: center;
 }
+.job-title h3{
+  text-align: center;
+  font-weight: bold;
+  flex-direction: row;
+}
 
 .job-title {
   padding: 30px 0;
-  text-align: center;
-  font-weight: bold;
   background-image: url("/images/double-bubble-outline.png");
   background-size: cover;
   background-repeat: no-repeat;
-  
+  display: flex;
 }
 .container{
   padding-left: 0;
@@ -171,13 +179,20 @@ ul {
 .tags{
   margin-top: 5vw;
   display: flex;
-  flex-wrap: wrap;
+  
   justify-content: space-evenly;
   text-transform: uppercase;
 }
 .button-options{
   margin: auto;
 }
+.form-control{
+  border: none;
+}
+.technologies{
+flex-direction: row;
+}
+
 @media (min-height: 1000px) and (min-width: 600px) {
   #root {
     height: 900px;

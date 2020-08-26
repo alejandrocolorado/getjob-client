@@ -1,10 +1,8 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { Card } from "react-bootstrap";
-
 import { withAuth } from "../lib/AuthProvider";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faAngleDoubleRight } from "@fortawesome/free-solid-svg-icons";
 import { faDesktop } from "@fortawesome/free-solid-svg-icons";
 import {
   faReact,
@@ -118,10 +116,10 @@ export class JobDetailSaved extends Component {
   render() {
     return (
       <div className="js-content section cover">
-        <h3 className="job-title">{this.state.job.title}</h3>
-
+        <div className="job-title">
+          <h3>{this.state.job.title}</h3>
+        </div>
         <Card className="text-center">
-          <Card.Header></Card.Header>
           <Card.Body>
             <Card.Title>Company name</Card.Title>
             <Card.Text>{this.state.job.company_name}</Card.Text>
@@ -131,34 +129,38 @@ export class JobDetailSaved extends Component {
             <Card.Text>{this.state.job.candidate_required_location}</Card.Text>
             <Card.Title>Publication date</Card.Title>
             <Card.Text>{this.state.job.publication_date}</Card.Text>
-            {this.state.job.salary !== ""
-            ? 
-            <>
-            <Card.Title>Salary</Card.Title>
-            <Card.Text>{this.state.job.salary}</Card.Text>
-            </>
-            : null
-            }
+            {this.state.job.salary !== "" ? (
+              <>
+                <Card.Title>Salary</Card.Title>
+                <Card.Text>{this.state.job.salary}</Card.Text>
+              </>
+            ) : null}
           </Card.Body>
           <Card.Footer className="text-muted"></Card.Footer>
         </Card>
-
-        <h2>TECHNOLOGIES</h2>
-
-        {this.state.job.technologies &&
-          this.state.job.technologies.map((tag, i) => {
-            return <TechButton job={this.state.job} tag={tag} key={i} />;
-          })}
-
-        <Link to={"/pending"}>
-          <MDBBtn
-            onClick={this.updateJob(this.state.job._id)}
-            color="light-grey"
-            size="sm"
-          >
-            Save job as draft
-          </MDBBtn>
-        </Link>
+        <div className="job-title">
+          <span>
+            {" "}
+            <h3>TECHNOLOGIES</h3>
+          </span>
+          <div className="technologies">
+            {this.state.job.technologies &&
+              this.state.job.technologies.map((tag, i) => {
+                return <TechButton job={this.state.job} tag={tag} key={i} />;
+              })}
+          </div>
+          <div>
+            <Link to={"/pending"}>
+              <MDBBtn
+                onClick={this.updateJob(this.state.job._id)}
+                color="light-grey"
+                size="sm"
+              >
+                Save job as draft
+              </MDBBtn>
+            </Link>
+          </div>
+        </div>
       </div>
     );
   }

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { withAuth } from "../lib/AuthProvider";
-import { MDBContainer, MDBRow, MDBCol, MDBBtn } from "mdbreact";
+import { MDBContainer, MDBRow, MDBCol, MDBBtn, MDBInput} from "mdbreact";
 import axios from "axios";
 
 
@@ -20,6 +20,7 @@ class Signup extends Component {
 
   handleFormSubmit = (event) => {
     event.preventDefault();
+    event.target.className += " was-validated";
     const {
       firstname,
       lastname,
@@ -85,8 +86,10 @@ class Signup extends Component {
       <div className="js-content section cover">
         <MDBContainer>
           <MDBRow>
-            <MDBCol md="6">
-              <form onSubmit={this.handleFormSubmit}>
+            <MDBCol >
+              <form onSubmit={this.handleFormSubmit}
+              className="needs-validation"
+              noValidate>
                 <p className="h4 text-center mb-4">Sign Up</p>
                 <label
                   htmlFor="defaultFormRegisterNameEx"
@@ -94,43 +97,46 @@ class Signup extends Component {
                 >
                   Your Name
                 </label>
-                <input
+                <MDBInput
                   type="text"
                   name="firstname"
                   value={firstname}
                   onChange={this.handleChange}
                   id="defaultFormRegisterNameEx"
                   className="form-control"
+                  required
                 />
-                <br />
+                <br/>
                 <label
                   htmlFor="defaultFormRegisterEmailEx"
                   className="grey-text"
                 >
                   Your Lastname
                 </label>
-                <input
+                <MDBInput
                   type="text"
                   name="lastname"
                   value={lastname}
                   onChange={this.handleChange}
                   id="defaultFormRegisterEmailEx"
                   className="form-control"
+                  required
                 />
-                <br />
+              <br/>
                 <label
                   htmlFor="defaultFormRegisterEmailEx"
                   className="grey-text"
                 >
                   Your Email
                 </label>
-                <input
+                <MDBInput
                   type="email"
                   name="email"
                   value={email}
                   onChange={this.handleChange}
                   id="defaultFormRegisterEmailEx"
                   className="form-control"
+                  required
                 />
                 <br />
                 <label
@@ -139,13 +145,14 @@ class Signup extends Component {
                 >
                   Your Password
                 </label>
-                <input
+                <MDBInput
                   type="password"
                   name="password"
                   value={password}
                   onChange={this.handleChange}
                   id="defaultFormRegisterConfirmEx"
                   className="form-control"
+                  required
                 />
                 <br />
                 <label
@@ -154,13 +161,14 @@ class Signup extends Component {
                 >
                   Your link to Linkedin
                 </label>
-                <input
+                <MDBInput
                   type="text"
                   name="linkedin"
                   value={linkedin}
                   onChange={this.handleChange}
                   id="defaultFormRegisterPasswordEx"
                   className="form-control"
+                  required
                 />
                 <br />
                 <label
@@ -169,13 +177,14 @@ class Signup extends Component {
                 >
                   Your City
                 </label>
-                <input
+                <MDBInput
                   type="text"
                   name="city"
                   value={city}
                   onChange={this.handleChange}
                   id="defaultFormRegisterEmailEx"
                   className="form-control"
+                  required
                 />
                 <br />
                 <label
@@ -184,13 +193,14 @@ class Signup extends Component {
                 >
                   Your Country
                 </label>
-                <input
+                <MDBInput
                   type="text"
                   name="country"
                   value={country}
                   onChange={this.handleChange}
                   id="defaultFormRegisterEmailEx"
                   className="form-control"
+                  required
                 />
                 <br />
                 <label
@@ -199,12 +209,12 @@ class Signup extends Component {
                 >
                   Image
                 </label>
-                <input
+                <MDBInput
                   type="file"
                   onChange={this.fileOnchange}
                   id="defaultFormRegisterEmailEx"
                   className="grey-text"
-                ></input>
+                ></MDBInput>
                 <br />
                 <br />
                 <label
@@ -213,13 +223,14 @@ class Signup extends Component {
                 >
                   Your Phone
                 </label>
-                <input
+                <MDBInput
                   type="number"
                   name="phone"
                   value={phone}
                   onChange={this.handleChange}
                   id="defaultFormRegisterEmailEx"
                   className="form-control"
+                  required
                 />
 
                 <div className="text-center mt-4">

@@ -84,6 +84,7 @@ export const TechButton = ({ tag, job }) => {
         <div>
           {dynamicImage(tag.name)}
           <h4>{tag.name}</h4>
+          <div>
           <Link to={tagTo}>
             <FontAwesomeIcon
               className="icons"
@@ -91,6 +92,7 @@ export const TechButton = ({ tag, job }) => {
               style={{ style: "none" }}
             />
           </Link>
+          </div>
         </div>
       ) : (
         <div style={{ backgroundColor: "green" }}>

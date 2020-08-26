@@ -39,6 +39,7 @@ export class Portfolio extends Component {
       <div>
         <h3>Portfolio</h3>
         <div>
+        
           {this.state.portfolio.map((portfolioItem) => {
             console.log(portfolioItem);
             return (
@@ -61,6 +62,7 @@ export class Portfolio extends Component {
               </ul>
             );
           })}
+          
         </div>
       </div>
     );
