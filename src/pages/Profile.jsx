@@ -21,7 +21,7 @@ export class Profile extends Component {
             </MDBBtn>
           </Link>
        
-              <MDBBtnGroup vertical>
+              <MDBBtnGroup vertical className='profile-btn-wrapper'>
                 <Link to={"/pending"}>
                   <MDBBtn className="text-dark profile-button" color="light-grey" size="sm">
                     Pending Applications
