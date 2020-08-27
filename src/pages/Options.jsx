@@ -105,13 +105,17 @@ function Options() {
             renderTags(state.category === "design" ? tagsDesign : tagsSoftware)}
         </div>
       </div>
+      {state.category !== null ?
       <div className="button-options">
         <Link to={`/search${buildQuery()}`}>
-          <Button  className="button-options">
-            Common!
+          <Button className="button-options">
+            C'mon!
           </Button>
         </Link>
       </div>
+      :
+      null
+      }
     </div>
   );
 }

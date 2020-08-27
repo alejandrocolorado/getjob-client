@@ -38,12 +38,18 @@ export class JobDetail extends Component {
     super(props);
     this.state = {
       job: this.props.location.job,
+      allJobs: [],
+      foundJob: null,
     };
+    console.log(this.state.job);
+  }
+
+  componentDidMount() {
+    this.getAllJobs();
   }
 
   saveJob = (job) => {
     const userId = this.props.user._id;
-
     axios
       .post("http://localhost:4000/job/job-detail", { job, userId })
       .then((response) => {
@@ -54,6 +60,24 @@ export class JobDetail extends Component {
       });
   };
 
+  getAllJobs() {
+    axios
+      .get("http://localhost:4000/user/pending")
+      .then((jobs) => {
+        const foundJob = jobs.data.find((job) => {
+          return job.apiId === this.props.location.job.id;
+        });
+
+        this.setState({
+          allJobs: jobs.data,
+          foundJob: foundJob,
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+
   dynamicImage = (tag) => {
     var returnvalue;
     switch (tag) {
@@ -63,7 +87,6 @@ export class JobDetail extends Component {
             style={{ margin: "0vw 2vw" }}
             icon={faReact}
             size="lg"
-            
           />
         );
         break;
@@ -212,7 +235,13 @@ export class JobDetail extends Component {
                 key={i}
                 style={{ display: "flex", justifyContent: "center" }}
               >
-                <div style={{ marginTop:'2vw', display: "flex", alignItems: "center" }}>
+                <div
+                  style={{
+                    marginTop: "2vw",
+                    display: "flex",
+                    alignItems: "center",
+                  }}
+                >
                   {this.dynamicImage(tag.toLowerCase())}
                   <h4>{tag.toUpperCase()}</h4>
                 </div>
@@ -221,23 +250,39 @@ export class JobDetail extends Component {
               <br style={{ display: "none" }} key={i} />
             );
           })}
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            margin: "2vw 0vw",
-          }}
-        >
-          <Link to={"/pending"}>
-            <MDBBtn
-              onClick={this.saveJob(this.state.job)}
-              color="light-grey"
-              size="sm"
-            >
-              Save job as draft
-            </MDBBtn>
-          </Link>
-        </div>
+        {this.state.foundJob ? (
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              margin: "2vw 0vw",
+            }}
+          >
+            <Link to={"/pending"}>
+              <MDBBtn color="light-grey" size="sm">
+                You already applied
+              </MDBBtn>
+            </Link>
+          </div>
+        ) : (
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              margin: "2vw 0vw",
+            }}
+          >
+            <Link to={"/pending"}>
+              <MDBBtn
+                onClick={() => this.saveJob(this.state.job)}
+                color="light-grey"
+                size="sm"
+              >
+                Save job as draft
+              </MDBBtn>
+            </Link>
+          </div>
+        )}
       </div>
     );
   }
