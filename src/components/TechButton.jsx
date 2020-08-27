@@ -32,7 +32,7 @@ export const TechButton = ({ tag, job }) => {
   ];
 
   const dynamicImage = (tag) => {
- console.log(tag);
+    console.log(tag);
     var returnvalue;
     switch (tag) {
       case "react":
@@ -79,11 +79,15 @@ export const TechButton = ({ tag, job }) => {
     job,
   };
   return (
-    <div>
-      {tag.url === ""  ? (
-        <div>
-          {dynamicImage(tag.name)}
-          <h4>{tag.name}</h4>
+    <>
+      {tag.url === "" ? (
+        <div style={{ display: "flex", justifyContent: "space-between" }}>
+        
+          <div style={{display: "flex", alignItems: 'center'}}>
+            {dynamicImage(tag.name)}
+            <h4>{tag.name}</h4>
+          </div>
+        
           <Link to={tagTo}>
             <FontAwesomeIcon
               className="icons"
@@ -99,10 +103,8 @@ export const TechButton = ({ tag, job }) => {
           <FontAwesomeIcon className="icons" icon={faCheck} />
         </div>
       )}
-    </div>
+    </>
   );
 };
-
-
 
 export default TechButton;

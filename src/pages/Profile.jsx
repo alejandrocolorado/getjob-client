@@ -6,7 +6,7 @@ import { withAuth } from "../lib/AuthProvider";
 export class Profile extends Component {
   render() {
     const { user, logout, isLoggedin } = this.props;
-    console.log(user);
+   
     return (
       
         <div id="profile">

@@ -160,6 +160,7 @@ export class JobDetail extends Component {
             );
           })}
         </section>
+        
         <Link to={"/pending"}>
           <MDBBtn
             onClick={this.saveJob(this.state.job)}

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { MDBContainer, MDBRow, MDBCol, MDBBtn } from "mdbreact";
+import { MDBContainer, MDBRow, MDBCol, MDBBtn, MDBInput } from "mdbreact";
 import { Link } from "react-router-dom";
 import { withAuth } from "../lib/AuthProvider";
 import axios from "axios";
@@ -8,26 +8,26 @@ export class EditProfile extends Component {
   constructor(props) {
     super(props);
 
-    const { user, logout, isLoggedin } = this.props;
-
     this.state = {
-      email: user.email,
-      firstname: user.firstname,
-      lastname: user.lastname,
-      city: user.city,
-      country: user.country,
-      phone: user.phone,
-      linkedin: user.linkedin,
-      image: user.image,
-      user,
+      email: "",
+      firstname: "",
+      lastname: "",
+      city: "",
+      country: "",
+      phone: "",
+      linkedin: "",
+      image: "",
+      user: null,
       messages: "",
     };
   }
 
-  /*   componentDidMount=() {
+ componentDidMount () {
+
     axios
-      .get('http://localhost:4000/user/profile')
-      .then((userObj) => {
+      .get('http://localhost:4000/user/profile', {withCredentials:true})
+      .then((response) => {
+       
         const {  email,
           firstname,
           lastname,
@@ -35,7 +35,7 @@ export class EditProfile extends Component {
           country,
           phone,
           linkedin,
-          image } = userObj;
+          image } = response.data;
         this.setState({  email,
           firstname,
           lastname,
@@ -43,11 +43,12 @@ export class EditProfile extends Component {
           country,
           phone,
           linkedin,
-          image });
+          image, 
+        user:response.data });
       })
       .catch((err) => console.log("Error EditUserPage.js, line 15"));   
     }
- */
+ 
 
   handleFormSubmit = (event) => {
     event.preventDefault();
@@ -135,13 +136,13 @@ export class EditProfile extends Component {
       country,
       phone,
       linkedin,
-      user,
+      
     } = this.state;
     return (
       <div className="js-content section cover">
         <MDBContainer>
           <MDBRow>
-            <MDBCol md="6">
+            <MDBCol >
               <form onSubmit={this.handleFormSubmit}>
                 <p className="h4 text-center mb-4">Edit your profile</p>
                 <label
@@ -150,7 +151,7 @@ export class EditProfile extends Component {
                 >
                   Your Name
                 </label>
-                <input
+                <MDBInput
                   type="text"
                   name="firstname"
                   value={firstname}
@@ -165,7 +166,7 @@ export class EditProfile extends Component {
                 >
                   Your Lastname
                 </label>
-                <input
+                <MDBInput
                   type="text"
                   name="lastname"
                   value={lastname}
@@ -180,7 +181,7 @@ export class EditProfile extends Component {
                 >
                   Your Email
                 </label>
-                <input
+                <MDBInput
                   type="email"
                   name="email"
                   value={email}
@@ -195,7 +196,7 @@ export class EditProfile extends Component {
                 >
                   Your link to Linkedin
                 </label>
-                <input
+                <MDBInput
                   type="text"
                   name="linkedin"
                   value={linkedin}
@@ -210,7 +211,7 @@ export class EditProfile extends Component {
                 >
                   Your City
                 </label>
-                <input
+                <MDBInput
                   type="text"
                   name="city"
                   value={city}
@@ -225,7 +226,7 @@ export class EditProfile extends Component {
                 >
                   Your Country
                 </label>
-                <input
+                <MDBInput
                   type="text"
                   name="country"
                   value={country}
@@ -240,12 +241,12 @@ export class EditProfile extends Component {
                 >
                   Image
                 </label>
-                <input
+                <MDBInput
                   type="file"
                   onChange={this.fileOnchange}
                   id="defaultFormRegisterEmailEx"
                   className="grey-text"
-                ></input>
+                ></MDBInput>
                 <br />
                 <br />
                 <label
@@ -254,7 +255,7 @@ export class EditProfile extends Component {
                 >
                   Your Phone
                 </label>
-                <input
+                <MDBInput
                   type="number"
                   name="phone"
                   value={phone}

@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { Card } from "react-bootstrap";
-
 import { withAuth } from "../lib/AuthProvider";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleDoubleRight } from "@fortawesome/free-solid-svg-icons";
@@ -129,10 +128,10 @@ export class JobDetailSaved extends Component {
     
     return (
       <div className="js-content section cover">
-        <h3 className="job-title">{this.state.job.title}</h3>
-
+        <div className="job-title">
+          <h3>{this.state.job.title}</h3>
+        </div>
         <Card className="text-center">
-          <Card.Header></Card.Header>
           <Card.Body>
             <Card.Title>Company name</Card.Title>
             <Card.Text>{this.state.job.company_name}</Card.Text>
@@ -142,18 +141,16 @@ export class JobDetailSaved extends Component {
             <Card.Text>{this.state.job.candidate_required_location}</Card.Text>
             <Card.Title>Publication date</Card.Title>
             <Card.Text>{this.state.job.publication_date}</Card.Text>
-            {this.state.job.salary !== ""
-            ? 
-            <>
-            <Card.Title>Salary</Card.Title>
-            <Card.Text>{this.state.job.salary}</Card.Text>
-            </>
-            : null
-            }
+            {this.state.job.salary !== "" ? (
+              <>
+                <Card.Title>Salary</Card.Title>
+                <Card.Text>{this.state.job.salary}</Card.Text>
+              </>
+            ) : null}
           </Card.Body>
           <Card.Footer className="text-muted"></Card.Footer>
         </Card>
-        <div></div>
+       
 
         <h4 className="tech-header">TECHNOLOGIES</h4>
 
