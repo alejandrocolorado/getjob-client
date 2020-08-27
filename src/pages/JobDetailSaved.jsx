@@ -3,7 +3,8 @@ import { Link } from "react-router-dom";
 import { Card } from "react-bootstrap";
 import { withAuth } from "../lib/AuthProvider";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faDesktop } from "@fortawesome/free-solid-svg-icons";
+import { faAngleDoubleRight } from "@fortawesome/free-solid-svg-icons";
+import { faDesktop, faCheck } from "@fortawesome/free-solid-svg-icons";
 import {
   faReact,
   faJsSquare,
@@ -15,6 +16,7 @@ import {
   faHtml5,
   faFigma,
   faUikit,
+  
 } from "@fortawesome/free-brands-svg-icons";
 import { MDBBtn } from "mdbreact";
 import axios from "axios";
@@ -37,6 +39,7 @@ const tags = [
 export class JobDetailSaved extends Component {
   state = {
     job: "",
+    isCompleted: false
   };
 
   componentDidMount() {
@@ -47,9 +50,15 @@ export class JobDetailSaved extends Component {
     const jobId = this.props.match.params.id;
     axios
       .get(`http://localhost:4000/job/job-detail-saved/${jobId}`)
-      .then((response) => {
+      .then((response) => {  
+        let foundEmptyTech = response.data.technologies.some((tech) => {
+          return tech.url.length === 0
+          }
+        )
+
         this.setState({
           job: response.data,
+          isCompleted: !foundEmptyTech
         });
       })
       .catch((error) => {
@@ -59,11 +68,12 @@ export class JobDetailSaved extends Component {
       });
   }
 
-  updateJob(jobId) {
+  updateJob() {
+    const jobId = this.props.match.params.id;
     axios
-      .post("http://localhost:4000/job/job-detail", jobId)
+      .post(`http://localhost:4000/job/job-detail-saved/${jobId}`)
       .then((response) => {
-        console.log(response);
+        console.log("Aqui------->", response);
       })
       .catch((err) => {
         console.log(err);
@@ -114,6 +124,8 @@ export class JobDetailSaved extends Component {
   };
 
   render() {
+    const {isCompleted} = this.state
+    
     return (
       <div className="js-content section cover">
         <div className="job-title">
@@ -138,29 +150,39 @@ export class JobDetailSaved extends Component {
           </Card.Body>
           <Card.Footer className="text-muted"></Card.Footer>
         </Card>
-        <div className="job-title">
-          <span>
-            {" "}
-            <h3>TECHNOLOGIES</h3>
-          </span>
-          <div className="technologies">
-            {this.state.job.technologies &&
-              this.state.job.technologies.map((tag, i) => {
-                return <TechButton job={this.state.job} tag={tag} key={i} />;
-              })}
-          </div>
-          <div>
-            <Link to={"/pending"}>
-              <MDBBtn
-                onClick={this.updateJob(this.state.job._id)}
-                color="light-grey"
-                size="sm"
-              >
-                Save job as draft
-              </MDBBtn>
-            </Link>
-          </div>
-        </div>
+       
+
+        <h4 className="tech-header">TECHNOLOGIES</h4>
+
+        {this.state.job.technologies &&
+          this.state.job.technologies.map((tag, i) => {
+            return <TechButton job={this.state.job} tag={tag} key={i} />;
+          })}
+        { isCompleted 
+        ?
+        <>
+        <Link to={"/completed"}>
+          <MDBBtn
+            
+            onClick={this.updateJob(this.state.job._id)}
+            color="light-grey"
+            size="sm"
+          >
+            Complete the Application
+          </MDBBtn>
+        </Link>
+        </>
+        :
+        <>
+          <MDBBtn
+            color="grey"
+            size="sm"
+          >
+            Complete the Application
+          </MDBBtn>
+        </>
+
+        }
       </div>
     );
   }

@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { faDesktop } from "@fortawesome/free-solid-svg-icons";
+import { faDesktop, faCheck } from "@fortawesome/free-solid-svg-icons";
 import {
   faReact,
   faJsSquare,
@@ -23,7 +23,7 @@ export const TechButton = ({ tag, job }) => {
     "react",
     "javascript",
     "php",
-    "node.js",
+    "nodjs",
     "python",
     "sketch",
     "ui",
@@ -32,7 +32,7 @@ export const TechButton = ({ tag, job }) => {
   ];
 
   const dynamicImage = (tag) => {
- console.log(tag);
+    console.log(tag);
     var returnvalue;
     switch (tag) {
       case "react":
@@ -62,7 +62,7 @@ export const TechButton = ({ tag, job }) => {
       case "html":
         returnvalue = <FontAwesomeIcon icon={faHtml5} />;
         break;
-      case "Figma":
+      case "figma":
         returnvalue = <FontAwesomeIcon icon={faFigma} />;
         break;
       case "ui":
@@ -79,12 +79,15 @@ export const TechButton = ({ tag, job }) => {
     job,
   };
   return (
-    <div>
-      {tag.url === ""  ? (
-        <div>
-          {dynamicImage(tag.name)}
-          <h4>{tag.name}</h4>
-          <div>
+    <>
+      {tag.url === "" ? (
+        <div style={{ display: "flex", justifyContent: "space-between" }}>
+        
+          <div style={{display: "flex", alignItems: 'center'}}>
+            {dynamicImage(tag.name)}
+            <h4>{tag.name}</h4>
+          </div>
+        
           <Link to={tagTo}>
             <FontAwesomeIcon
               className="icons"
@@ -92,16 +95,15 @@ export const TechButton = ({ tag, job }) => {
               style={{ style: "none" }}
             />
           </Link>
-          </div>
         </div>
       ) : (
         <div style={{ backgroundColor: "green" }}>
           <img src="" alt="tech logo" style={{ width: 50 }} />
           <h4>{tag.name}</h4>
-          <FontAwesomeIcon className="icons" icon={faAngleDoubleRight} />
+          <FontAwesomeIcon className="icons" icon={faCheck} />
         </div>
       )}
-    </div>
+    </>
   );
 };
 

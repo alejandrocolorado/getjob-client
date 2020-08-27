@@ -43,7 +43,7 @@ export class Technology extends Component {
 
   getTech() {
     techObjs.map((elem) => {
-      if (elem.name === this.state.tag.name) {
+      if (elem.name === this.state.tag.name.toLowerCase()) {
         this.setState({
           tech: elem,
         });
@@ -75,6 +75,7 @@ export class Technology extends Component {
       })
       .then((response) => {
         console.log(response);
+        this.props.history.push(`/job-detail-saved/${this.state.job._id}`)
       })
       .catch((err) => {
         console.log(err);

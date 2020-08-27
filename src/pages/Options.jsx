@@ -85,18 +85,29 @@ function Options() {
 
   return (
     <div className="js-content section cover">
-      {categories.map((el, i) => (
-        <Button key={i} variant="outline-success">
-          <Category category={el} onClick={() => onClickCategory(el)} />
-        </Button>
-      ))}
-      <div className="tags">
-        {state.category &&
-          renderTags(state.category === "design" ? tagsDesign : tagsSoftware)}
+      <h3 className="search-title">Search</h3>
+      <p className="search-content" >What type of job you are searching for?</p>
+      <div className="main-btn-wrapper">
+        {categories.map((el, i) => (
+          <Button
+            key={i}
+            variant="outline-success"
+            className="main-category-btn"
+          >
+            <Category category={el} onClick={() => onClickCategory(el)} />
+          </Button>
+        ))}
       </div>
-      <div className='button-options'>
+      <p className="search-content">Select up to three categories</p>
+      <div className="tags-wrapper">
+        <div className="tags">
+          {state.category &&
+            renderTags(state.category === "design" ? tagsDesign : tagsSoftware)}
+        </div>
+      </div>
+      <div className="button-options">
         <Link to={`/search${buildQuery()}`}>
-          <Button color="grey" size="sm">
+          <Button className="button-options">
             Common!
           </Button>
         </Link>

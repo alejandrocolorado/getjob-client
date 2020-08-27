@@ -170,21 +170,73 @@ ul {
   background-image: url("/images/double-bubble-outline.png");
   background-size: cover;
   background-repeat: no-repeat;
-  display: flex;
+}
+
+.tech-header{
+  padding: 30px 0;
+  text-align: center;
+  font-weight: bold;
+  margin: 0;
+  background-color: #eee;
+
 }
 .container{
   padding-left: 0;
   padding-right: 0;
 }
-.tags{
-  margin-top: 5vw;
+.main-btn-wrapper{
   display: flex;
-  
+  flex-direction: row;
   justify-content: space-evenly;
+  padding: 0 0 20px 0;
+}
+.main-category-btn{
+  height: 100px;
+  width: 40%;
+  font-weight: bold;
+}
+
+.search-title{
+  padding: 30px 0;
+  text-align: center;
+  font-weight: bold;
+  background-image: url("/images/double-bubble-outline.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.search-content{
+  text-align: center;
+}
+
+.tags-wrapper{
+  
+}
+
+.tags{
+  
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
   text-transform: uppercase;
+  border-color: rgb(100, 100, 100);
+  width: 100%;
 }
 .button-options{
   margin: auto;
+  width: 100%;
+  background-color: #eee !important;
+  color: rgb(53, 53, 53);
+  font-weight: bold;
+  border-bottom: 20px;
+}
+
+.button-options:hover {
+
+  background-color: rgb(85, 199, 100) !important;
+  color: #fff;
+  font-weight: bold;
 }
 .form-control{
   border: none;

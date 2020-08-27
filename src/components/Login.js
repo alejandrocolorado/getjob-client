@@ -25,7 +25,7 @@ class Login extends Component {
       <div className="js-content section cover">
         <MDBContainer>
           <MDBRow>
-            <MDBCol md="6">
+            <MDBCol>
               <form className="needs-validation"
               noValidate
               onSubmit={this.handleFormSubmit}>
