@@ -10,7 +10,7 @@ import { faDesktop, faTrash } from "@fortawesome/free-solid-svg-icons";
 export class Portfolio extends Component {
   state = {
     portfolio: [],
-    url: ""
+    url: "",
   };
 
   componentDidMount() {
@@ -27,18 +27,21 @@ export class Portfolio extends Component {
 
   handleFormSubmit = (event, Id) => {
     event.preventDefault();
-    
-    const portfolioId = this.state.portfolio[0]._id
-    const techId = this.state.portfolio[0].technologies[0]._id
-    console.log("Aqui------>", portfolioId, Id)
-    
+
+    const portfolioId = this.state.portfolio[0]._id;
+    const techId = this.state.portfolio[0].technologies[0]._id;
 
     axios
-      .delete(`http://localhost:4000/user/portfolio/${portfolioId}/tag/${techId}`)
-      .then(() => {
+      .post(`http://localhost:4000/user/portfolio`, { portfolioId, Id })
+      .then((response) => {
+        console.log(this.state.portfolio);
+
+        const copyPortfolio = [...this.state.portfolio];
+        copyPortfolio.technologies[0].url = "";
+        console.log(copyPortfolio.technologies);
+
         this.setState({
-          ...this.state,
-          url: "",
+          portfolio: copyPortfolio,
         });
 
         // setTimeout(() => {
@@ -56,23 +59,30 @@ export class Portfolio extends Component {
   handleChange = (event) => {
     const { name, value } = event.target;
     this.setState({ [name]: value });
-  }
+  };
 
   render() {
     return (
       <div>
-        <h3 className="job-title" style={{textAlign: "center", fontWeight:"bold"}}>Portfolio</h3>
+        <h3
+          className="job-title"
+          style={{ textAlign: "center", fontWeight: "bold" }}
+        >
+          Portfolio
+        </h3>
         <div>
-          {this.state.portfolio.map((portfolioItem) => {
-            
+          {this.state.portfolio.map((portfolioItem, i) => {
             return (
-              <ul className="portfolio-list">
+              <ul key={i} className="portfolio-list">
                 {portfolioItem.technologies.map((tech) => {
-                  
                   return (
                     <div key={portfolioItem._id} className="portfolio-item">
                       <h5 className="tech-name">{tech.name.toUpperCase()}</h5>
-                      <form onSubmit={(event) => this.handleFormSubmit(event, tech._id)}>
+                      <form
+                        onSubmit={(event) =>
+                          this.handleFormSubmit(event, tech._id)
+                        }
+                      >
                         <MDBInput
                           type="text"
                           name="url"
@@ -81,12 +91,18 @@ export class Portfolio extends Component {
                           id="defaultFormRegisterNameEx"
                           className="form-control"
                         />
-                        <label htmlFor="defaultFormRegisterEmailEx" className="grey-text"></label>
-                        
-                        <button type="submit" className='trash-btn' value="delete"><FontAwesomeIcon icon={faTrash}/>
-                          
-                            
-                          </button>
+                        <label
+                          htmlFor="defaultFormRegisterEmailEx"
+                          className="grey-text"
+                        ></label>
+
+                        <button
+                          type="submit"
+                          className="trash-btn"
+                          value="delete"
+                        >
+                          <FontAwesomeIcon icon={faTrash} />
+                        </button>
                       </form>
                     </div>
                   );
