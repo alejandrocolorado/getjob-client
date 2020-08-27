@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { Card } from "react-bootstrap";
 import { withAuth } from "../lib/AuthProvider";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faAngleDoubleRight } from "@fortawesome/free-solid-svg-icons";
 import { faDesktop, faCheck } from "@fortawesome/free-solid-svg-icons";
 import {
   faReact,
@@ -16,7 +15,6 @@ import {
   faHtml5,
   faFigma,
   faUikit,
-  
 } from "@fortawesome/free-brands-svg-icons";
 import { MDBBtn } from "mdbreact";
 import axios from "axios";
@@ -39,7 +37,7 @@ const tags = [
 export class JobDetailSaved extends Component {
   state = {
     job: "",
-    isCompleted: false
+    isCompleted: false,
   };
 
   componentDidMount() {
@@ -50,15 +48,14 @@ export class JobDetailSaved extends Component {
     const jobId = this.props.match.params.id;
     axios
       .get(`http://localhost:4000/job/job-detail-saved/${jobId}`)
-      .then((response) => {  
+      .then((response) => {
         let foundEmptyTech = response.data.technologies.some((tech) => {
-          return tech.url.length === 0
-          }
-        )
+          return tech.url.length === 0;
+        });
 
         this.setState({
           job: response.data,
-          isCompleted: !foundEmptyTech
+          isCompleted: !foundEmptyTech,
         });
       })
       .catch((error) => {
@@ -81,41 +78,107 @@ export class JobDetailSaved extends Component {
   }
 
   dynamicImage = (tag) => {
-    tag.toLowerCase();
     var returnvalue;
     switch (tag) {
       case "react":
-        returnvalue = <FontAwesomeIcon icon={faReact} />;
+        returnvalue = (
+          <FontAwesomeIcon
+            style={{ margin: "0vw 2vw" }}
+            icon={faReact}
+            size="lg"
+           
+          />
+        );
         break;
       case "javascript":
-        returnvalue = <FontAwesomeIcon icon={faJsSquare} />;
+        returnvalue = (
+          <FontAwesomeIcon
+            style={{ margin: "0vw 2vw" }}
+            icon={faJsSquare}
+            size="lg"
+          />
+        );
         break;
       case "php":
-        returnvalue = <FontAwesomeIcon icon={faPhp} />;
+        returnvalue = (
+          <FontAwesomeIcon
+            style={{ margin: "0vw 2vw" }}
+            icon={faPhp}
+            size="lg"
+          />
+        );
         break;
       case "node.js":
-        returnvalue = <FontAwesomeIcon icon={faNodeJs} />;
+        returnvalue = (
+          <FontAwesomeIcon
+            style={{ margin: "0vw 2vw" }}
+            icon={faNodeJs}
+            size="lg"
+          />
+        );
         break;
-      case "CSS":
-        returnvalue = <FontAwesomeIcon icon={faCss3Alt} />;
+      case "css":
+        returnvalue = (
+          <FontAwesomeIcon
+            style={{ margin: "0vw 2vw" }}
+            icon={faCss3Alt}
+            size="2x"
+          />
+        );
         break;
       case "python":
-        returnvalue = <FontAwesomeIcon icon={faPython} />;
+        returnvalue = (
+          <FontAwesomeIcon
+            style={{ margin: "0vw 2vw" }}
+            icon={faPython}
+            size="lg"
+          />
+        );
         break;
       case "frontend":
-        returnvalue = <FontAwesomeIcon icon={faDesktop} />;
+        returnvalue = (
+          <FontAwesomeIcon
+            style={{ margin: "0vw 2vw" }}
+            icon={faDesktop}
+            size="lg"
+          />
+        );
         break;
       case "sketch":
-        returnvalue = <FontAwesomeIcon icon={faSketch} />;
+        returnvalue = (
+          <FontAwesomeIcon
+            style={{ margin: "0vw 2vw" }}
+            icon={faSketch}
+            size="lg"
+          />
+        );
         break;
       case "html":
-        returnvalue = <FontAwesomeIcon icon={faHtml5} />;
+        returnvalue = (
+          <FontAwesomeIcon
+            style={{ margin: "0vw 2vw" }}
+            icon={faHtml5}
+            size="2x"
+          />
+        );
         break;
       case "figma":
-        returnvalue = <FontAwesomeIcon icon={faFigma} />;
+        returnvalue = (
+          <FontAwesomeIcon
+            style={{ margin: "0vw 2vw" }}
+            icon={faFigma}
+            size="lg"
+          />
+        );
         break;
       case "ui":
-        returnvalue = <FontAwesomeIcon icon={faUikit} />;
+        returnvalue = (
+          <FontAwesomeIcon
+            style={{ margin: "0vw 2vw" }}
+            icon={faUikit}
+            size="lg"
+          />
+        );
         break;
       default:
         break;
@@ -124,8 +187,8 @@ export class JobDetailSaved extends Component {
   };
 
   render() {
-    const {isCompleted} = this.state
-    
+    const { isCompleted } = this.state;
+
     return (
       <div className="js-content section cover">
         <div className="job-title">
@@ -141,50 +204,66 @@ export class JobDetailSaved extends Component {
             <Card.Text>{this.state.job.candidate_required_location}</Card.Text>
             <Card.Title>Publication date</Card.Title>
             <Card.Text>{this.state.job.publication_date}</Card.Text>
-            {this.state.job.salary !== "" ? (
+            {this.state.job.salary === "" ? (
               <>
                 <Card.Title>Salary</Card.Title>
                 <Card.Text>{this.state.job.salary}</Card.Text>
               </>
-            ) : null}
+            ) : (
+              <>
+                <Card.Title>Salary</Card.Title>
+                <Card.Text>Unavailable</Card.Text>
+              </>
+            )}
           </Card.Body>
-          <Card.Footer className="text-muted"></Card.Footer>
+          <Card.Footer className="text-muted">
+            <a
+              rel="noopener noreferrer"
+              target="_blank"
+              href={this.state.job.url}
+              style={{ style: "none", fontWeight: "bold", color: "black" }}
+            >
+              Check out more
+            </a>
+          </Card.Footer>
         </Card>
-       
 
         <h4 className="tech-header">TECHNOLOGIES</h4>
+        <p style={{ margin: "1vw 0vw 2vw" }} className="search-content">
+          Show us your skills and apply
+        </p>
 
         {this.state.job.technologies &&
           this.state.job.technologies.map((tag, i) => {
             return <TechButton job={this.state.job} tag={tag} key={i} />;
           })}
-        { isCompleted 
-        ?
-        <>
-        <Link to={"/completed"}>
-          <MDBBtn
-            
-            onClick={this.updateJob(this.state.job._id)}
-            color="light-grey"
-            size="sm"
-          >
-            Complete the Application
-          </MDBBtn>
-        </Link>
-        </>
-        :
-        <>
-          <MDBBtn
-            color="grey"
-            size="sm"
-          >
-            Complete the Application
-          </MDBBtn>
-        </>
-
-        }
+        {isCompleted ? (
+          <>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                margin: "2vw 0vw",
+              }}
+            >
+              <Link to={"/completed"}>
+                <MDBBtn
+                className="button-options"
+                  style={{ margin: "2vw 0vw" }}
+                  onClick={this.updateJob(this.state.job._id)}
+                  color="light-grey"
+                  size="sm"
+                >
+                  Complete the Application
+                </MDBBtn>
+              </Link>
+            </div>
+          </>
+        ) : <div style={{marginBottom: '3vw'}} ></div>}
       </div>
     );
   }
 }
 export default withAuth(JobDetailSaved);
+
+

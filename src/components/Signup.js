@@ -90,7 +90,7 @@ class Signup extends Component {
               <form onSubmit={this.handleFormSubmit}
               className="needs-validation"
               noValidate>
-                <p className="h4 text-center mb-4">Sign Up</p>
+                <p style={{fontWeight:'bold'}} className="h4 text-center mb-4">Sign Up</p>
                 <label
                   htmlFor="defaultFormRegisterNameEx"
                   className="grey-text"
@@ -236,7 +236,7 @@ class Signup extends Component {
                 <div className="text-center mt-4">
                   {disable ? (
                     <MDBBtn
-                      color="unique"
+                      color="indigo"
                       value="Signup"
                       type="submit"
                       disabled
@@ -244,7 +244,7 @@ class Signup extends Component {
                       Register
                     </MDBBtn>
                   ) : (
-                    <MDBBtn color="unique" value="Signup" type="submit">
+                    <MDBBtn color="indigo" value="Signup" type="submit">
                       Register
                     </MDBBtn>
                   )}

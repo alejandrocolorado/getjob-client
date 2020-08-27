@@ -26,10 +26,17 @@ class Login extends Component {
         <MDBContainer>
           <MDBRow>
             <MDBCol>
-              <form className="needs-validation"
-              noValidate
-              onSubmit={this.handleFormSubmit}>
-                <p className="h4 text-center mb-4">Log In</p>
+              <form
+                className="needs-validation"
+                noValidate
+                onSubmit={this.handleFormSubmit}
+              >
+                <p
+                  style={{ fontWeight: "bold" }}
+                  className="h4 text-center mb-4"
+                >
+                  Log In
+                </p>
                 <label htmlFor="defaultFormLoginEmailEx" className="grey-text">
                   Your Email
                 </label>
@@ -41,8 +48,8 @@ class Login extends Component {
                   value={email}
                   onChange={this.handleChange}
                   required
-                  />
-               <div className="valid-feedback">Looks good!</div>
+                />
+                <div className="valid-feedback">Looks good!</div>
                 <label
                   htmlFor="defaultFormLoginPasswordEx"
                   className="grey-text"
