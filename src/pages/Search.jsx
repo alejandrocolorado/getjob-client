@@ -67,7 +67,7 @@ class Search extends Component {
                   <MDBCardText>{job.title}</MDBCardText>
                   <Link to={newTo}>
                     <MDBBtn color="success" size="sm">
-                      Check out!
+                      Check it out!
                     </MDBBtn>
                   </Link>
                 </MDBCardBody>
