@@ -217,6 +217,18 @@ ul {
 }
 .button-options{
   margin: auto;
+  width: 100%;
+  background-color: #eee !important;
+  color: rgb(53, 53, 53);
+  font-weight: bold;
+  border-bottom: 20px;
+}
+
+.button-options:hover {
+
+  background-color: rgb(85, 199, 100) !important;
+  color: #fff;
+  font-weight: bold;
 }
 @media (min-height: 1000px) and (min-width: 600px) {
   #root {

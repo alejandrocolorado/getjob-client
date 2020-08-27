@@ -107,7 +107,7 @@ function Options() {
       </div>
       <div className="button-options">
         <Link to={`/search${buildQuery()}`}>
-          <Button color="grey" size="sm">
+          <Button className="button-options">
             Common!
           </Button>
         </Link>
