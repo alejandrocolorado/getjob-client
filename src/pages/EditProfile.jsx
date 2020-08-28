@@ -25,7 +25,7 @@ export class EditProfile extends Component {
  componentDidMount () {
 
     axios
-      .get('http://localhost:4000/user/profile', {withCredentials:true})
+      .get(`${process.env.REACT_APP_API_URL}/user/profile`, {withCredentials:true})
       .then((response) => {
        
         const {  email,
@@ -75,7 +75,7 @@ export class EditProfile extends Component {
     // });
 
     axios
-      .put(`http://localhost:4000/user/edit-profile`, {
+      .put(`${process.env.REACT_APP_API_URL}/user/edit-profile`, {
         email,
         firstname,
         lastname,
@@ -116,7 +116,7 @@ export class EditProfile extends Component {
     uploadData.append("photo", file);
 
     axios
-      .post("http://localhost:4000/auth/upload", uploadData, {
+      .post(`${process.env.REACT_APP_API_URL}/auth/upload`, uploadData, {
         withCredentials: true,
       })
       .then((response) => {

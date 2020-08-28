@@ -60,12 +60,7 @@ export class Technology extends Component {
     const githubLink = this.state.githubLink;
     const tag = this.state.tag;
     axios
-      .post("http://localhost:4000/job/job-detail/technology", {
-        job,
-        user,
-        githubLink,
-        tag,
-      })
+      .post(`${process.env.REACT_APP_API_URL}/job/job-detail/technology`, {job, user, githubLink, tag})
       .then((response) => {
         console.log(response);
         this.props.history.push(`/job-detail-saved/${this.state.job._id}`);

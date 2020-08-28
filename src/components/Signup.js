@@ -59,7 +59,7 @@ class Signup extends Component {
     uploadData.append("photo", file);
 
     axios
-      .post("http://localhost:4000/auth/upload", uploadData, {
+      .post(`${process.env.REACT_APP_API_URL}/auth/upload`, uploadData, {
         withCredentials: true,
       })
       .then((response) => {

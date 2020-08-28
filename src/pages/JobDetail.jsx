@@ -51,7 +51,7 @@ export class JobDetail extends Component {
   saveJob = (job) => {
     const userId = this.props.user._id;
     axios
-      .post("http://localhost:4000/job/job-detail", { job, userId })
+      .post(`${process.env.REACT_APP_API_URL}/job/job-detail`, {job, userId})
       .then((response) => {
         console.log(response);
       })
@@ -62,7 +62,7 @@ export class JobDetail extends Component {
 
   getAllJobs() {
     axios
-      .get("http://localhost:4000/user/pending")
+      .get(`${process.env.REACT_APP_API_URL}/user/pending`)
       .then((jobs) => {
         const foundJob = jobs.data.find((job) => {
           return job.apiId === this.props.location.job.id;

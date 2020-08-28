@@ -47,7 +47,7 @@ export class JobDetailSaved extends Component {
   getJobApplication() {
     const jobId = this.props.match.params.id;
     axios
-      .get(`http://localhost:4000/job/job-detail-saved/${jobId}`)
+      .get(`${process.env.REACT_APP_API_URL}/job/job-detail-saved/${jobId}`)
       .then((response) => {
         let foundEmptyTech = response.data.technologies.some((tech) => {
           return tech.url.length === 0;
@@ -68,7 +68,7 @@ export class JobDetailSaved extends Component {
   updateJob() {
     const jobId = this.props.match.params.id;
     axios
-      .post(`http://localhost:4000/job/job-detail-saved/${jobId}`)
+      .post(`${process.env.REACT_APP_API_URL}/job/job-detail`, jobId)
       .then((response) => {
         console.log("Aqui------->", response);
       })

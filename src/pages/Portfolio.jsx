@@ -34,23 +34,25 @@ export class Portfolio extends Component {
     
 
     axios
-      .delete(`http://localhost:4000/user/portfolio/${portfolioId}/tag/${techId}`)
-      .then(() => {
-        this.setState({
-          ...this.state,
-          url: "",
-        });
-
-        // setTimeout(() => {
-        //   this.props.history.push("/profile");
-        // }, 1500);
-      })
-      .catch((error) => {
-        this.setState({
-          ...this.state,
-          messages: "Error",
-        });
+    .post(`${process.env.REACT_APP_API_URL}/user/portfolio`, { portfolioId, Id })
+    .then((response) => {
+      console.log(this.state.portfolio);
+      const copyPortfolio = [...this.state.portfolio];
+      copyPortfolio.technologies[0].url = "";
+      console.log(copyPortfolio.technologies);
+      this.setState({
+        portfolio: copyPortfolio,
       });
+      // setTimeout(() => {
+      //   this.props.history.push("/profile");
+      // }, 1500);
+    })
+    .catch((error) => {
+      this.setState({
+        ...this.state,
+        messages: "Error",
+      });
+    });
   };
 
   handleChange = (event) => {
