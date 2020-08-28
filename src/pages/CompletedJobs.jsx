@@ -75,7 +75,7 @@ export class CompletedJobs extends Component {
             style={{ margin: "0vw 2vw" }}
             icon={faReact}
             size="lg"
-            style={{ color: "white" }}
+          
           />
         );
         break;
