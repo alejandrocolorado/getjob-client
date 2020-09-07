@@ -23,7 +23,7 @@ export const TechButton = ({ tag, job }) => {
     "react",
     "javascript",
     "php",
-    "nodjs",
+    "node",
     "python",
     "sketch",
     "ui",
@@ -32,41 +32,41 @@ export const TechButton = ({ tag, job }) => {
   ];
 
   const dynamicImage = (tag) => {
-    console.log(tag);
+   
     var returnvalue;
     switch (tag) {
       case "react":
-        returnvalue = <FontAwesomeIcon icon={faReact} />;
+        returnvalue = <FontAwesomeIcon style={{margin: '0vw 2vw'}} icon={faReact} size="lg" />;
         break;
       case "javascript":
-        returnvalue = <FontAwesomeIcon icon={faJsSquare} />;
+        returnvalue = <FontAwesomeIcon style={{margin: '0vw 2vw'}} icon={faJsSquare} size="lg" />;
         break;
       case "php":
-        returnvalue = <FontAwesomeIcon icon={faPhp} />;
+        returnvalue = <FontAwesomeIcon style={{margin: '0vw 2vw'}} icon={faPhp} size="lg" />;
         break;
-      case "node.js":
-        returnvalue = <FontAwesomeIcon icon={faNodeJs} />;
+      case "node":
+        returnvalue = <FontAwesomeIcon style={{margin: '0vw 2vw'}} icon={faNodeJs} size="lg"/>;
         break;
       case "CSS":
-        returnvalue = <FontAwesomeIcon icon={faCss3Alt} />;
+        returnvalue = <FontAwesomeIcon style={{margin: '0vw 2vw'}} icon={faCss3Alt} size="2x"/>;
         break;
       case "python":
-        returnvalue = <FontAwesomeIcon icon={faPython} />;
+        returnvalue = <FontAwesomeIcon  style={{margin: '0vw 2vw'}} icon={faPython} size="lg"/>;
         break;
       case "frontend":
-        returnvalue = <FontAwesomeIcon icon={faDesktop} />;
+        returnvalue = <FontAwesomeIcon style={{margin: '0vw 2vw'}} icon={faDesktop} size="lg"/>;
         break;
       case "sketch":
-        returnvalue = <FontAwesomeIcon icon={faSketch} />;
+        returnvalue = <FontAwesomeIcon style={{margin: '0vw 2vw'}} icon={faSketch} size="lg"/>;
         break;
       case "html":
-        returnvalue = <FontAwesomeIcon icon={faHtml5} />;
+        returnvalue = <FontAwesomeIcon style={{margin: '0vw 2vw'}} icon={faHtml5} size="2x"/>;
         break;
       case "figma":
-        returnvalue = <FontAwesomeIcon icon={faFigma} />;
+        returnvalue = <FontAwesomeIcon style={{margin: '0vw 2vw'}} icon={faFigma} size="lg"/>;
         break;
       case "ui":
-        returnvalue = <FontAwesomeIcon icon={faUikit} />;
+        returnvalue = <FontAwesomeIcon  style={{margin: '0vw 2vw'}} icon={faUikit} size="lg"/>;
         break;
       default:
         break;
@@ -85,22 +85,27 @@ export const TechButton = ({ tag, job }) => {
         
           <div style={{display: "flex", alignItems: 'center'}}>
             {dynamicImage(tag.name)}
-            <h4>{tag.name}</h4>
+            <h4>{tag.name.toUpperCase()}</h4>
           </div>
         
           <Link to={tagTo}>
             <FontAwesomeIcon
               className="icons"
-              icon={faAngleDoubleRight}
-              style={{ style: "none" }}
+              icon={faAngleDoubleRight} size="lg"
+              style={{ style: "none", marginRight:'2vw' }}
             />
           </Link>
         </div>
       ) : (
-        <div style={{ backgroundColor: "green" }}>
-          <img src="" alt="tech logo" style={{ width: 50 }} />
-          <h4>{tag.name}</h4>
+        <div style={{ display: "flex", justifyContent: "space-between" }}>
+        
+        <div style={{display: "flex", alignItems: 'center'}}>
+        {dynamicImage(tag.name)}
+          <h4>{tag.name.toUpperCase()}</h4>
+          </div>
+          <div className='check'>
           <FontAwesomeIcon className="icons" icon={faCheck} />
+          </div>
         </div>
       )}
     </>

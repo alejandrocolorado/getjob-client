@@ -1,27 +1,37 @@
-@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@300;700&display=swap");
 
 * {
-  font-family: 'Lato', sans-serif;
+  font-family: "Lato", sans-serif;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
   -webkit-user-select: none;
   user-select: none;
- 
- 
+}
+.picture {
+  background: url(/images/2250.jpg) no-repeat center center fixed;
+  height: 45vw;
+}
+.title {
+  font-family: "Lato", sans-serif;
+  text-align: center;
+  font-weight: bold;
+  margin: 1vw 2vw;
+}
+.link {
+  text-align: center;
 }
 .icons {
   color: black;
   opacity: 0.6;
 }
 .icons:hover {
-  color: blue;
+  color: green;
 }
 #root {
   text-align: left;
   flex-grow: 0;
   min-height: 100%;
   overflow: auto;
-  
 }
 #root,
 .cover {
@@ -31,14 +41,13 @@
   flex-grow: 1;
   background: #ffff;
   overflow: hidden;
-
 }
 
-.mainWrapper, 
+.mainWrapper,
 body {
   min-height: 100%;
   height: inherit;
-  background: url( /images/bg2.png ) no-repeat center center fixed;   
+  background: url(/images/bg3.png) no-repeat center center fixed;
   /* background-color: rgb(231, 223, 212); */
   background-size: cover;
   -moz-background-size: cover;
@@ -53,7 +62,6 @@ body {
   -webkit-font-smoothing: antialiased;
   color: black;
   overscroll-behavior: contain;
-  
 }
 .app.js-content {
   padding-top: 6vw;
@@ -113,10 +121,10 @@ ul {
   margin: auto;
   margin-top: 2vw;
 }
-.profile-btn-wrapper{
+.profile-btn-wrapper {
   background-color: rgb(246, 246, 246);
   margin: 0 !important;
-  padding-top: 20px
+  padding-top: 20px;
 }
 .but-profile {
   justify-content: center;
@@ -139,7 +147,6 @@ ul {
 }
 
 .profile-button {
-  
   width: 40%;
   margin: auto;
   margin-bottom: 20px;
@@ -159,13 +166,13 @@ ul {
   flex-direction: row;
   margin: auto;
   background-color: #eee;
-  padding: 1vw 6vw;
+  padding: 1vw 3vw;
 }
-.titles{
+.titles {
   margin-top: 2vw;
   text-align: center;
 }
-.job-title h3{
+.job-title h3 {
   text-align: center;
   font-weight: bold;
   flex-direction: row;
@@ -178,31 +185,30 @@ ul {
   background-repeat: no-repeat;
 }
 
-.tech-header{
+.tech-header {
   padding: 30px 0;
   text-align: center;
   font-weight: bold;
   margin: 0;
   background-color: #eee;
-
 }
-.container{
+.container {
   padding-left: 0;
   padding-right: 0;
 }
-.main-btn-wrapper{
+.main-btn-wrapper {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
   padding: 0 0 20px 0;
 }
-.main-category-btn{
+.main-category-btn {
   height: 100px;
   width: 40%;
   font-weight: bold;
 }
 
-.search-title{
+.search-title {
   padding: 30px 0;
   text-align: center;
   font-weight: bold;
@@ -211,7 +217,11 @@ ul {
   background-repeat: no-repeat;
 }
 
-.trash-btn{
+.search-content {
+  text-align: center;
+}
+
+.trash-btn {
   background: none;
   border-color: none;
   color: rgb(206, 67, 67);
@@ -219,17 +229,22 @@ ul {
   padding-bottom: 10px;
 }
 
-.search-content{
+.search-content {
   text-align: center;
 }
 
-.tags-wrapper{
+.tags-wrapper {
   height: 300px;
- 
 }
-
-.tags{
-  
+.check {
+  background-color: #71a158;
+  margin-right: 2vw;
+  width: 7vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.tags {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -238,45 +253,48 @@ ul {
   border-color: rgb(100, 100, 100);
   width: 100%;
 }
-.button-options{
+.button-options {
   margin: auto;
   width: 100%;
   background-color: #eee !important;
-  color: rgb(53, 53, 53);
+  color: black;
   font-weight: bold;
   border-bottom: 20px;
 }
+.button-options:before {
+  color: black;
+}
 
-.tech-name{
+.tech-name {
   font-weight: bold;
   color: rgb(58, 58, 58);
   padding-top: 10px;
-
 }
 
-.portfolio-list{
+.portfolio-list {
   padding: 0 0 0 25px !important;
 }
 
-.portfolio-item{
+.portfolio-item {
   background-color: rgb(246, 246, 246);
   padding: 0 20px;
-  margin: 10px 0; 
-  width: 95%
+  margin: 10px 0;
+  width: 95%;
 }
 
-
 .button-options:hover {
-
   background-color: rgb(85, 199, 100) !important;
   color: #fff;
   font-weight: bold;
 }
-.form-control{
+.form-control {
   border: none;
 }
-.technologies{
-flex-direction: row;
+.technologies {
+  flex-direction: row;
+}
+#login {
+  margin-bottom: 3vw;
 }
 
 @media (min-height: 1000px) and (min-width: 600px) {

@@ -3,7 +3,7 @@ import axios from "axios";
 class ApiService {
     constructor () {
         this.api = axios.create({
-            baseURL: "http://localhost:4000"
+            baseURL: `${process.env.REACT_APP_API_URL}`
         });
     }
 
@@ -23,6 +23,10 @@ class ApiService {
 
     getAllPortfolioItems = async () => {
         return this.api.get('/user/portfolio')
+    }
+
+    deleteJob = async (jobId) => {
+        return this.api.delete(`/user/completed/${jobId}`)
     }
 
    

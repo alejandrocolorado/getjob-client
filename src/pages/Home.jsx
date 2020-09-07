@@ -1,16 +1,22 @@
-import React from 'react'
+import React from "react";
 import { Link } from "react-router-dom";
-import { MDBContainer, MDBRow, MDBCol, MDBBtn } from "mdbreact";
-import { Card, CardImg, CardBody, CardTitle, CardSubtitle } from "react-bootstrap";
+import { Image } from "react-bootstrap";
+import { MDBBtn } from "mdbreact";
 
 function Home() {
   return (
-    <div className="md-form">
-  <label for="form1"></label>
-  <input type="text" id="form1" className="form-control"/>
-</div>
-
-  )
+    <div className="js-content section cover">
+      <h3 className="title">
+        Wondering what type of skills you need for landing a job in the tech
+        industry?
+      </h3>
+      <Image src="/images/2250.jpg" fluid />
+      <p className="title">Wonder no more!</p>
+      <Link className='link' to={"/login"}>
+        <MDBBtn color="blue-grey">Give it a try</MDBBtn>
+      </Link>
+    </div>
+  );
 }
 
 export default Home;

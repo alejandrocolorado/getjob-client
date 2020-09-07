@@ -48,41 +48,107 @@ export class PendingJobs extends Component {
   }
 
   dynamicImage = (tag) => {
-    tag.toLowerCase();
     var returnvalue;
     switch (tag) {
       case "react":
-        returnvalue = <FontAwesomeIcon icon={faReact} />;
+        returnvalue = (
+          <FontAwesomeIcon
+            style={{ margin: "0vw 2vw" }}
+            icon={faReact}
+            size="lg"
+          
+          />
+        );
         break;
       case "javascript":
-        returnvalue = <FontAwesomeIcon icon={faJsSquare} />;
+        returnvalue = (
+          <FontAwesomeIcon
+            style={{ margin: "0vw 2vw" }}
+            icon={faJsSquare}
+            size="lg"
+          />
+        );
         break;
       case "php":
-        returnvalue = <FontAwesomeIcon icon={faPhp} />;
+        returnvalue = (
+          <FontAwesomeIcon
+            style={{ margin: "0vw 2vw" }}
+            icon={faPhp}
+            size="lg"
+          />
+        );
         break;
       case "node.js":
-        returnvalue = <FontAwesomeIcon icon={faNodeJs} />;
+        returnvalue = (
+          <FontAwesomeIcon
+            style={{ margin: "0vw 2vw" }}
+            icon={faNodeJs}
+            size="lg"
+          />
+        );
         break;
       case "CSS":
-        returnvalue = <FontAwesomeIcon icon={faCss3Alt} />;
+        returnvalue = (
+          <FontAwesomeIcon
+            style={{ margin: "0vw 2vw" }}
+            icon={faCss3Alt}
+            size="2x"
+          />
+        );
         break;
       case "python":
-        returnvalue = <FontAwesomeIcon icon={faPython} />;
+        returnvalue = (
+          <FontAwesomeIcon
+            style={{ margin: "0vw 2vw" }}
+            icon={faPython}
+            size="lg"
+          />
+        );
         break;
       case "frontend":
-        returnvalue = <FontAwesomeIcon icon={faDesktop} />;
+        returnvalue = (
+          <FontAwesomeIcon
+            style={{ margin: "0vw 2vw" }}
+            icon={faDesktop}
+            size="lg"
+          />
+        );
         break;
       case "sketch":
-        returnvalue = <FontAwesomeIcon icon={faSketch} />;
+        returnvalue = (
+          <FontAwesomeIcon
+            style={{ margin: "0vw 2vw" }}
+            icon={faSketch}
+            size="lg"
+          />
+        );
         break;
       case "html":
-        returnvalue = <FontAwesomeIcon icon={faHtml5} />;
+        returnvalue = (
+          <FontAwesomeIcon
+            style={{ margin: "0vw 2vw" }}
+            icon={faHtml5}
+            size="2x"
+          />
+        );
         break;
       case "figma":
-        returnvalue = <FontAwesomeIcon icon={faFigma} />;
+        returnvalue = (
+          <FontAwesomeIcon
+            style={{ margin: "0vw 2vw" }}
+            icon={faFigma}
+            size="lg"
+          />
+        );
         break;
       case "ui":
-        returnvalue = <FontAwesomeIcon icon={faUikit} />;
+        returnvalue = (
+          <FontAwesomeIcon
+            style={{ margin: "0vw 2vw" }}
+            icon={faUikit}
+            size="lg"
+          />
+        );
         break;
       default:
         break;
@@ -100,7 +166,7 @@ export class PendingJobs extends Component {
   deleteJob = (jobId) => {
     console.log(jobId);
     axios
-    .delete(`http://localhost:4000/user/pending/${jobId}`)
+    .delete(`${process.env.REACT_APP_API_URL}/user/pending/${jobId}`)
     .then((response) => {
       console.log(response);
     })
@@ -117,9 +183,9 @@ export class PendingJobs extends Component {
 
   render() {
     return (
-      <div className="js-content section cover">
-        <div className="titles">
-          <h2>Pending Jobs</h2>
+     <div className="js-content section cover">
+        <div className="job-title">
+          <h3>Pending Jobs</h3>
         </div>
         <MDBContainer>
           {this.state.pendingJobs.map((job) => {

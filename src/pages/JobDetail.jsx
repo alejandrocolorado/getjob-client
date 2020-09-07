@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Button, Card } from 'react-bootstrap';
+import { Button, Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { withAuth } from "../lib/AuthProvider";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -38,14 +38,20 @@ export class JobDetail extends Component {
     super(props);
     this.state = {
       job: this.props.location.job,
+      allJobs: [],
+      foundJob: null,
     };
+    console.log(this.state.job);
+  }
+
+  componentDidMount() {
+    this.getAllJobs();
   }
 
   saveJob = (job) => {
     const userId = this.props.user._id;
-
     axios
-      .post("http://localhost:4000/job/job-detail", { job, userId })
+      .post(`${process.env.REACT_APP_API_URL}/job/job-detail`, {job, userId})
       .then((response) => {
         console.log(response);
       })
@@ -54,42 +60,125 @@ export class JobDetail extends Component {
       });
   };
 
+  getAllJobs() {
+    axios
+      .get(`${process.env.REACT_APP_API_URL}/user/pending`)
+      .then((jobs) => {
+        const foundJob = jobs.data.find((job) => {
+          return job.apiId === this.props.location.job.id;
+        });
+
+        this.setState({
+          allJobs: jobs.data,
+          foundJob: foundJob,
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+
   dynamicImage = (tag) => {
-   
-    var returnvalue
+    var returnvalue;
     switch (tag) {
       case "react":
-        returnvalue = <FontAwesomeIcon icon={faReact} />;
+        returnvalue = (
+          <FontAwesomeIcon
+            style={{ margin: "0vw 2vw" }}
+            icon={faReact}
+            size="lg"
+          />
+        );
         break;
       case "javascript":
-        returnvalue = <FontAwesomeIcon icon={faJsSquare} />;
+        returnvalue = (
+          <FontAwesomeIcon
+            style={{ margin: "0vw 2vw" }}
+            icon={faJsSquare}
+            size="lg"
+          />
+        );
         break;
       case "php":
-        returnvalue = <FontAwesomeIcon icon={faPhp} />;
+        returnvalue = (
+          <FontAwesomeIcon
+            style={{ margin: "0vw 2vw" }}
+            icon={faPhp}
+            size="lg"
+          />
+        );
         break;
       case "node.js":
-        returnvalue = <FontAwesomeIcon icon={faNodeJs} />;
+        returnvalue = (
+          <FontAwesomeIcon
+            style={{ margin: "0vw 2vw" }}
+            icon={faNodeJs}
+            size="lg"
+          />
+        );
         break;
       case "css":
-        returnvalue = <FontAwesomeIcon icon={faCss3Alt} />;
+        returnvalue = (
+          <FontAwesomeIcon
+            style={{ margin: "0vw 2vw" }}
+            icon={faCss3Alt}
+            size="2x"
+          />
+        );
         break;
       case "python":
-        returnvalue = <FontAwesomeIcon icon={faPython} />;
+        returnvalue = (
+          <FontAwesomeIcon
+            style={{ margin: "0vw 2vw" }}
+            icon={faPython}
+            size="lg"
+          />
+        );
         break;
       case "frontend":
-        returnvalue = <FontAwesomeIcon icon={faDesktop} />;
+        returnvalue = (
+          <FontAwesomeIcon
+            style={{ margin: "0vw 2vw" }}
+            icon={faDesktop}
+            size="lg"
+          />
+        );
         break;
       case "sketch":
-        returnvalue = <FontAwesomeIcon icon={faSketch} />;
+        returnvalue = (
+          <FontAwesomeIcon
+            style={{ margin: "0vw 2vw" }}
+            icon={faSketch}
+            size="lg"
+          />
+        );
         break;
       case "html":
-        returnvalue = <FontAwesomeIcon icon={faHtml5} />;
+        returnvalue = (
+          <FontAwesomeIcon
+            style={{ margin: "0vw 2vw" }}
+            icon={faHtml5}
+            size="2x"
+          />
+        );
         break;
       case "figma":
-        returnvalue = <FontAwesomeIcon icon={faFigma} />;
+        returnvalue = (
+          <FontAwesomeIcon
+            style={{ margin: "0vw 2vw" }}
+            icon={faFigma}
+            size="lg"
+          />
+        );
         break;
       case "ui":
-        returnvalue = <FontAwesomeIcon icon={faUikit} />;
+        returnvalue = (
+          <FontAwesomeIcon
+            style={{ margin: "0vw 2vw" }}
+            icon={faUikit}
+            size="lg"
+          />
+        );
         break;
       default:
         break;
@@ -100,76 +189,100 @@ export class JobDetail extends Component {
   render() {
     return (
       <div className="js-content section cover">
-
-
-<Card className="text-center">
-  <Card.Header>Featured</Card.Header>
-  <Card.Body>
-    <Card.Title>Special title treatment</Card.Title>
-    <Card.Text>
-      With supporting text below as a natural lead-in to additional content.
-    </Card.Text>
- 
-  </Card.Body>
-  <Card.Footer className="text-muted">2 days ago</Card.Footer>
-</Card>
-        <h3>{this.state.job.title}</h3>
-        <section>
-          <div>
-            <h5>Company name</h5>
-            <p>{this.state.job.company_name}</p>
-          </div>
-          <div>
-            <h5>Job type</h5>
-            <p>{this.state.job.title}</p>
-          </div>
-          <div>
-            <h5>Offer location</h5>
-            <p>{this.state.job.candidate_required_location}</p>
-          </div>
-          <div>
-            <h5>Publication date</h5>
-            <p>{this.state.job.publication_date}</p>
-          </div>
-          <div>
-            <h5>Publication date</h5>
-            <p>{this.state.job.salary}</p>
-          </div>
-          <div>
+        <div className="job-title">
+          <h3>{this.state.job.title}</h3>
+        </div>
+        <Card className="text-center">
+          <Card.Body>
+            <Card.Title>Company name</Card.Title>
+            <Card.Text>{this.state.job.company_name}</Card.Text>
+            <Card.Title>Job type</Card.Title>
+            <Card.Text>{this.state.job.title}</Card.Text>
+            <Card.Title>Offer location</Card.Title>
+            <Card.Text>{this.state.job.candidate_required_location}</Card.Text>
+            <Card.Title>Publication date</Card.Title>
+            <Card.Text>{this.state.job.publication_date}</Card.Text>
+            {this.state.job.salary === "" ? (
+              <>
+                <Card.Title>Salary</Card.Title>
+                <Card.Text>{this.state.job.salary}</Card.Text>
+              </>
+            ) : (
+              <>
+                <Card.Title>Salary</Card.Title>
+                <Card.Text>Unavailable</Card.Text>
+              </>
+            )}
+          </Card.Body>
+          <Card.Footer className="text-muted">
             <a
               rel="noopener noreferrer"
               target="_blank"
               href={this.state.job.url}
+              style={{ style: "none", fontWeight: "bold", color: "black" }}
             >
               Check out more
             </a>
-          </div>
-        </section>
+          </Card.Footer>
+        </Card>
 
-        <section>
-          <h2>TECHNOLOGIES</h2>
+        <h4 className="tech-header">TECHNOLOGIES</h4>
 
-          {this.state.job.tags.map((tag, i) => {
+        {this.state.job.tags &&
+          this.state.job.tags.map((tag, i) => {
             return tags.includes(tag.toLowerCase()) ? (
-              <div key={i}>
-                {this.dynamicImage(tag.toLowerCase())}
-                <h4>{tag.toUpperCase()}</h4>
+              <div
+                key={i}
+                style={{ display: "flex", justifyContent: "center" }}
+              >
+                <div
+                  style={{
+                    marginTop: "2vw",
+                    display: "flex",
+                    alignItems: "center",
+                  }}
+                >
+                  {this.dynamicImage(tag.toLowerCase())}
+                  <h4>{tag.toUpperCase()}</h4>
+                </div>
               </div>
             ) : (
               <br style={{ display: "none" }} key={i} />
             );
           })}
-        </section>
-        
-        <Link to={"/pending"}>
-          <MDBBtn
-            onClick={this.saveJob(this.state.job)}
-            color="light-grey"
-            size="sm"
+        {this.state.foundJob ? (
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              margin: "2vw 0vw",
+            }}
           >
-            Save job as draft
-          </MDBBtn>
-        </Link>
+            <Link to={"/pending"}>
+              <MDBBtn color="light-grey" size="sm">
+                You already applied
+              </MDBBtn>
+            </Link>
+          </div>
+        ) : (
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              margin: "2vw 0vw",
+            }}
+          >
+            <Link to={"/pending"}>
+              <MDBBtn
+                onClick={() => this.saveJob(this.state.job)}
+                color="light-grey"
+                size="sm"
+              >
+                Save job as draft
+              </MDBBtn>
+            </Link>
+          </div>
+        )}
       </div>
     );
   }

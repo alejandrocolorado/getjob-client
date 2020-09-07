@@ -2,24 +2,16 @@ import React, { Component } from "react";
 import { withAuth } from "../lib/AuthProvider";
 import techObjs from "./../helpers/techLinks.json";
 import axios from "axios";
+import Button from "react-bootstrap/Button";
 import { Card } from "react-bootstrap";
 import {
-  MDBCol,
   MDBInput,
   MDBBtn,
   MDBCard,
   MDBCardBody,
   MDBCardImage,
   MDBCardTitle,
-  MDBCardText,
-  MDBCarousel,
-  MDBCarouselInner,
-  MDBCarouselItem,
-  MDBView,
-  MDBMask,
-  MDBContainer,
 } from "mdbreact";
-import { Link } from "react-router-dom";
 
 export class Technology extends Component {
   constructor(props) {
@@ -53,6 +45,7 @@ export class Technology extends Component {
 
   displayCourses() {
     const cursesBlock = document.getElementById("courses");
+    //window.scrollTo(0, 0)
     if (cursesBlock.style.display === "none") {
       cursesBlock.style.display = "block";
     } else {
@@ -67,62 +60,67 @@ export class Technology extends Component {
     const githubLink = this.state.githubLink;
     const tag = this.state.tag;
     axios
-      .post("http://localhost:4000/job/job-detail/technology", {
-        job,
-        user,
-        githubLink,
-        tag,
-      })
+      .post(`${process.env.REACT_APP_API_URL}/job/job-detail/technology`, {job, user, githubLink, tag})
       .then((response) => {
         console.log(response);
-        this.props.history.push(`/job-detail-saved/${this.state.job._id}`)
+        this.props.history.push(`/job-detail-saved/${this.state.job._id}`);
       })
       .catch((err) => {
         console.log(err);
       });
   };
+  touppe;
 
   render() {
     return (
-      <div>
-        <h3 className="job-title">{this.state.tag.name}</h3>
+      <div className="js-content section cover">
+        <div className="job-title">
+          <h3>{this.state.tag.name.toUpperCase()}</h3>
+        </div>
 
         <Card className="text-center">
           <Card.Header>We require a relevant project on GitHub</Card.Header>
         </Card>
 
-        <MDBCol>
-          <form
-            onSubmit={this.UpdateJobAndPortfolio}
-            className="needs-validation"
-            noValidate
-          >
-            <label htmlFor="defaultFormRegisterNameEx" className="grey-text">
-              Put the link
-            </label>
-            <MDBInput
-              background
-              size="lg"
-              type="text"
-              name="githubLink"
-              value={this.state.githubLink}
-              onChange={this.handleChange}
-              id="defaultFormRegisterNameEx"
-              className="form-control"
-            />
+        <form
+          style={{ margin: "2vw 0vw" }}
+          onSubmit={this.UpdateJobAndPortfolio}
+          className="needs-validation"
+          noValidate
+        >
+          <label htmlFor="defaultFormRegisterNameEx" className="grey-text">
+            Put the link
+          </label>
+          <MDBInput
+            background
+            size="lg"
+            type="text"
+            name="githubLink"
+            value={this.state.githubLink}
+            onChange={this.handleChange}
+            id="defaultFormRegisterNameEx"
+            className="form-control"
+          />
+          <div style={{ display: "flex", justifyContent: "center" }}>
             <MDBBtn type="submit" value="Submit" color="blue-grey">
-              Blue-grey
+              Save the link
             </MDBBtn>
-          </form>
-        </MDBCol>
+          </div>
+        </form>
 
-        <p>
+        <p style={{ textAlign: "center", width: "95%" }}>
           <strong>No relevant project yet?</strong> No worries, create one with
           these awesome Udemy courses and then insert your repository
         </p>
-        <button className="buttons-courses" onClick={this.displayCourses}>
+
+        <Button
+          style={{ marginBottom: "3vw", marginTop: '1vw' }}
+          className="button-options"
+          onClick={this.displayCourses}
+        >
           Show me the goods!
-        </button>
+        </Button>
+
         <div
           id="courses"
           className="container-course"
@@ -131,7 +129,7 @@ export class Technology extends Component {
           {this.state.tech &&
             this.state.tech.courses.map((course, i) => {
               return (
-                <MDBCard>
+                <MDBCard style={{ margin: "2vw" }}>
                   <MDBCardImage
                     src={course.img}
                     alt="MDBCard image cap"
@@ -140,15 +138,15 @@ export class Technology extends Component {
                     overlay="white-slight"
                   />
                   <MDBCardBody>
-                    <MDBCardTitle tag="h5">Panel title</MDBCardTitle>
+                    <MDBCardTitle style={{ textAlign: "center" }} tag="h5">{course.title}</MDBCardTitle>
 
                     <a
                       rel="noopener noreferrer"
                       target="_blank"
                       href={course.link}
                     >
-                      <MDBBtn color="primary" size="md">
-                        read more
+                      <MDBBtn style={{ display: "flex", justifyContent: "center" }} color="primary" size="md">
+                        Ask for more
                       </MDBBtn>{" "}
                     </a>
                   </MDBCardBody>
@@ -162,51 +160,3 @@ export class Technology extends Component {
 }
 
 export default withAuth(Technology);
-
-{
-  /* <div
-id="courses"
-className="container-course"
-style={{ display: "none" }}
->
-<MDBContainer>
-  <MDBCarousel
-    length={2}
-    showControls={true}
-    showIndicators={true}
-    className="z-depth-1"
-  >
-    <MDBCarouselInner      id="courses"
-className="container-course"
-style={{ display: "none" }}>
-      {this.state.tech &&
-        this.state.tech.courses.map((course, i) => {
-          console.log(course);
-          return (
-            <MDBCarouselItem itemId={i}>
-              <MDBView>
-                <img
-                  className="d-block w-100"
-                  src={course.img}
-                  alt="First slide"
-                />
-                <MDBCardTitle tag="h5">{course.title}</MDBCardTitle>
-              </MDBView>
-              <a
-                rel="noopener noreferrer"
-                target="_blank"
-                href={course.link}
-              >
-                {" "}
-                <MDBBtn color="primary" size="md">
-                  Go to Udemy
-                </MDBBtn>{" "}
-              </a>
-            </MDBCarouselItem>
-          );
-        })}
-    </MDBCarouselInner>
-  </MDBCarousel>
-</MDBContainer>
-</div> */
-}
