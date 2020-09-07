@@ -2,10 +2,10 @@ import React, { Component } from "react";
 
 import { withAuth } from "../lib/AuthProvider";
 import apiService from "./../../src/services/apiService";
-import { MDBContainer, MDBRow, MDBCol, MDBBtn, MDBInput } from "mdbreact";
+import { MDBInput } from "mdbreact";
 import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faDesktop, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { faTrash } from "@fortawesome/free-solid-svg-icons";
 
 export class Portfolio extends Component {
   state = {
@@ -100,20 +100,6 @@ export class Portfolio extends Component {
       </div>
     );
   }
-}
-
-{
-  /* <li key={portfolioItem._id}>
-                      <h4>{tech.name}</h4>
-                      <div>
-                        <p>{tech.url}</p>
-                        <button
-                          onClick={() => this.deletePortfolioUrl(tech.url)}
-                        >
-                          Delete
-                        </button>
-                      </div>
-                    </li> */
 }
 
 export default withAuth(Portfolio);

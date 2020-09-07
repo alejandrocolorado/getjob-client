@@ -3,30 +3,30 @@ import { Link } from "react-router-dom";
 import { Card } from "react-bootstrap";
 import { withAuth } from "../lib/AuthProvider";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faDesktop, faCheck } from "@fortawesome/free-solid-svg-icons";
+import { faMobileAlt,  } from "@fortawesome/free-solid-svg-icons";
 import {
   faReact,
   faJsSquare,
   faPhp,
-  faNodeJs,
   faPython,
   faCss3Alt,
   faSketch,
   faHtml5,
   faFigma,
   faUikit,
+  faAngular,
 } from "@fortawesome/free-brands-svg-icons";
 import { MDBBtn } from "mdbreact";
 import axios from "axios";
 import TechButton from "./../components/TechButton";
 
 const tags = [
-  "frontend",
+  "mobile",
   "CSS",
   "react",
   "javascript",
   "php",
-  "node.js",
+  "angular",
   "python",
   "sketch",
   "ui",
@@ -108,11 +108,11 @@ export class JobDetailSaved extends Component {
           />
         );
         break;
-      case "node.js":
+      case "angular":
         returnvalue = (
           <FontAwesomeIcon
             style={{ margin: "0vw 2vw" }}
-            icon={faNodeJs}
+            icon={faAngular}
             size="lg"
           />
         );
@@ -135,11 +135,11 @@ export class JobDetailSaved extends Component {
           />
         );
         break;
-      case "frontend":
+      case "mobile":
         returnvalue = (
           <FontAwesomeIcon
             style={{ margin: "0vw 2vw" }}
-            icon={faDesktop}
+            icon={faMobileAlt}
             size="lg"
           />
         );

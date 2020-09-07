@@ -5,7 +5,7 @@ import { withAuth } from "../lib/AuthProvider";
 
 export class Profile extends Component {
   render() {
-    const { user, logout, isLoggedin } = this.props;
+    const { user, logout} = this.props;
    
     return (
       

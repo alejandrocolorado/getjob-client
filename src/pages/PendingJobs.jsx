@@ -11,27 +11,27 @@ import {
   MDBContainer,
 } from "mdbreact";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faDesktop } from "@fortawesome/free-solid-svg-icons";
+import { faMobileAlt } from "@fortawesome/free-solid-svg-icons";
 import {
   faReact,
   faJsSquare,
   faPhp,
-  faNodeJs,
   faPython,
   faCss3Alt,
   faSketch,
   faHtml5,
   faFigma,
   faUikit,
+  faAngular,
 } from "@fortawesome/free-brands-svg-icons";
 import axios from "axios";
 const tags = [
-  "frontend",
+  "angular",
   "CSS",
   "react",
   "javascript",
   "php",
-  "node.js",
+  "mobile",
   "python",
   "sketch",
   "ui",
@@ -78,11 +78,11 @@ export class PendingJobs extends Component {
           />
         );
         break;
-      case "node.js":
+      case "angular":
         returnvalue = (
           <FontAwesomeIcon
             style={{ margin: "0vw 2vw" }}
-            icon={faNodeJs}
+            icon={faAngular}
             size="lg"
           />
         );
@@ -105,11 +105,11 @@ export class PendingJobs extends Component {
           />
         );
         break;
-      case "frontend":
+      case "mobile":
         returnvalue = (
           <FontAwesomeIcon
             style={{ margin: "0vw 2vw" }}
-            icon={faDesktop}
+            icon={faMobileAlt}
             size="lg"
           />
         );

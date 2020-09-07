@@ -1,29 +1,29 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { faDesktop, faCheck } from "@fortawesome/free-solid-svg-icons";
+import { faCheck, faMobileAlt } from "@fortawesome/free-solid-svg-icons";
 import {
   faReact,
   faJsSquare,
   faPhp,
-  faNodeJs,
   faPython,
   faCss3Alt,
   faSketch,
   faHtml5,
   faFigma,
   faUikit,
+  faAngular,
 } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleDoubleRight } from "@fortawesome/free-solid-svg-icons";
 
 export const TechButton = ({ tag, job }) => {
   const tags = [
-    "frontend",
+    "mobile",
     "CSS",
     "react",
     "javascript",
     "php",
-    "node",
+    "angular",
     "python",
     "sketch",
     "ui",
@@ -44,8 +44,8 @@ export const TechButton = ({ tag, job }) => {
       case "php":
         returnvalue = <FontAwesomeIcon style={{margin: '0vw 2vw'}} icon={faPhp} size="lg" />;
         break;
-      case "node":
-        returnvalue = <FontAwesomeIcon style={{margin: '0vw 2vw'}} icon={faNodeJs} size="lg"/>;
+      case "mobile":
+        returnvalue = <FontAwesomeIcon style={{margin: '0vw 2vw'}} icon={faMobileAlt} size="lg"/>;
         break;
       case "CSS":
         returnvalue = <FontAwesomeIcon style={{margin: '0vw 2vw'}} icon={faCss3Alt} size="2x"/>;
@@ -53,8 +53,8 @@ export const TechButton = ({ tag, job }) => {
       case "python":
         returnvalue = <FontAwesomeIcon  style={{margin: '0vw 2vw'}} icon={faPython} size="lg"/>;
         break;
-      case "frontend":
-        returnvalue = <FontAwesomeIcon style={{margin: '0vw 2vw'}} icon={faDesktop} size="lg"/>;
+      case "angular":
+        returnvalue = <FontAwesomeIcon style={{margin: '0vw 2vw'}} icon={faAngular} size="lg"/>;
         break;
       case "sketch":
         returnvalue = <FontAwesomeIcon style={{margin: '0vw 2vw'}} icon={faSketch} size="lg"/>;
