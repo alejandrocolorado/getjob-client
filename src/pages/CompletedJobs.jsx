@@ -54,15 +54,20 @@ export class CompletedJobs extends Component {
     });
   };
 
-  deleteJob = (jobId) => {
+  deleteJob = async (jobId) => {
     console.log(jobId);
     console.log(this.state);
-    const filtered = this.state.completedJobs.filter(
-      (job) => job._id !== jobId
-    );
-    this.setState({
-      completedJobs: filtered,
-    });
+    try {
+      const filtered = this.state.completedJobs.filter(
+        (job) => job._id !== jobId
+      );
+      await apiService.deleteJob(jobId);
+      this.setState({
+        completedJobs: filtered,
+      });
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   dynamicImage = (tag) => {
@@ -74,7 +79,6 @@ export class CompletedJobs extends Component {
             style={{ margin: "0vw 2vw" }}
             icon={faReact}
             size="lg"
-          
           />
         );
         break;
@@ -210,11 +214,10 @@ export class CompletedJobs extends Component {
                   >
                     Delete it
                   </MDBBtn>
-                 
-                    <MDBBtn color="blue-grey" size="sm">
-                     Awaiting answer
-                    </MDBBtn>
-                
+
+                  <MDBBtn color="blue-grey" size="sm">
+                    Awaiting answer
+                  </MDBBtn>
                 </MDBCardBody>
               </MDBCard>
             );

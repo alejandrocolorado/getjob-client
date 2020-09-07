@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import { withAuth } from "../lib/AuthProvider";
-import { MDBContainer, MDBRow, MDBCol, MDBBtn, MDBInput} from "mdbreact";
+import { MDBContainer, MDBRow, MDBCol, MDBBtn, MDBInput } from "mdbreact";
 import axios from "axios";
-
 
 class Signup extends Component {
   state = {
@@ -47,7 +46,7 @@ class Signup extends Component {
   };
 
   handleChange = (event) => {
-    const { name, value } = event.target;
+    const { name, value } = event.target; 
     this.setState({ [name]: value });
   };
 
@@ -86,11 +85,18 @@ class Signup extends Component {
       <div className="js-content section cover">
         <MDBContainer>
           <MDBRow>
-            <MDBCol >
-              <form onSubmit={this.handleFormSubmit}
-              className="needs-validation"
-              noValidate>
-                <p style={{fontWeight:'bold'}} className="h4 text-center mb-4">Sign Up</p>
+            <MDBCol>
+              <form
+                onSubmit={this.handleFormSubmit}
+                className="needs-validation"
+                noValidate
+              >
+                <p
+                  style={{ fontWeight: "bold" }}
+                  className="h4 text-center mb-4"
+                >
+                  Sign Up
+                </p>
                 <label
                   htmlFor="defaultFormRegisterNameEx"
                   className="grey-text"
@@ -106,7 +112,7 @@ class Signup extends Component {
                   className="form-control"
                   required
                 />
-                <br/>
+                <br />
                 <label
                   htmlFor="defaultFormRegisterEmailEx"
                   className="grey-text"
@@ -122,7 +128,7 @@ class Signup extends Component {
                   className="form-control"
                   required
                 />
-              <br/>
+                <br />
                 <label
                   htmlFor="defaultFormRegisterEmailEx"
                   className="grey-text"
@@ -253,7 +259,7 @@ class Signup extends Component {
             </MDBCol>
           </MDBRow>
         </MDBContainer>
-        <br/>
+        <br />
       </div>
     );
   }

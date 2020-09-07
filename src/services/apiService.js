@@ -25,6 +25,10 @@ class ApiService {
         return this.api.get('/user/portfolio')
     }
 
+    deleteJob = async (jobId) => {
+        return this.api.delete(`/user/completed/${jobId}`)
+    }
+
    
 
     
