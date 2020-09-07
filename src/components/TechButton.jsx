@@ -23,7 +23,7 @@ export const TechButton = ({ tag, job }) => {
     "react",
     "javascript",
     "php",
-    "nodjs",
+    "node",
     "python",
     "sketch",
     "ui",
@@ -44,7 +44,7 @@ export const TechButton = ({ tag, job }) => {
       case "php":
         returnvalue = <FontAwesomeIcon style={{margin: '0vw 2vw'}} icon={faPhp} size="lg" />;
         break;
-      case "node.js":
+      case "node":
         returnvalue = <FontAwesomeIcon style={{margin: '0vw 2vw'}} icon={faNodeJs} size="lg"/>;
         break;
       case "CSS":

@@ -1,6 +1,14 @@
 import React, { Component } from "react";
 import { withAuth } from "../lib/AuthProvider";
-import { MDBContainer, MDBRow, MDBCol, MDBBtn, MDBInput } from "mdbreact";
+import { Link } from "react-router-dom";
+import {
+  MDBContainer,
+  MDBRow,
+  MDBCol,
+  MDBBtn,
+  MDBInput,
+  MDBModalFooter,
+} from "mdbreact";
 
 class Login extends Component {
   state = { email: "", password: "" };
@@ -65,12 +73,20 @@ class Login extends Component {
                   onChange={this.handleChange}
                   required
                 />
-                <div className="text-center mt-4">
+                <div id='login' className="text-center mt-4">
                   <MDBBtn color="indigo" type="submit">
                     Login
                   </MDBBtn>
                 </div>
               </form>
+              <MDBModalFooter className="mx-5 pt-3 mb-1">
+                <p className="font-small grey-text d-flex justify-content-end">
+                  Not a member?
+                  <Link to={"/signup"} className="blue-text ml-1">
+                    Sign Up
+                  </Link>
+                </p>
+              </MDBModalFooter>
             </MDBCol>
           </MDBRow>
         </MDBContainer>
