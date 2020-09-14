@@ -29,7 +29,9 @@ class ApiService {
         return this.api.delete(`/user/completed/${jobId}`)
     }
 
-   
+    deletePortfolio = async (portId) => {
+        return this.api.delete(`/user/completed/${portId}`)
+    }
 
     
 }

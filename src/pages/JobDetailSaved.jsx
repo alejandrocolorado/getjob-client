@@ -68,7 +68,7 @@ export class JobDetailSaved extends Component {
   updateJob() {
     const jobId = this.props.match.params.id;
     axios
-      .post(`${process.env.REACT_APP_API_URL}/job/job-detail`, jobId)
+      .post(`${process.env.REACT_APP_API_URL}/job/job-detail-saved/${jobId}` )
       .then((response) => {
         console.log("Aqui------->", response);
       })

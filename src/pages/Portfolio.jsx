@@ -60,7 +60,7 @@ export class Portfolio extends Component {
 
   render() {
     return (
-      <div>
+      <>
         <h3
           className="job-title"
           style={{ textAlign: "center", fontWeight: "bold" }}
@@ -108,7 +108,7 @@ export class Portfolio extends Component {
             );
           })}
         </div>
-      </div>
+      </>
     );
   }
 }

@@ -55,16 +55,14 @@ export class CompletedJobs extends Component {
   };
 
   deleteJob = async (jobId) => {
-    console.log(jobId);
-    console.log(this.state);
+    const filtered = this.state.completedJobs.filter(
+      (job) => job._id !== jobId
+    );
+    this.setState({
+      completedJobs: filtered,
+    });
     try {
-      const filtered = this.state.completedJobs.filter(
-        (job) => job._id !== jobId
-      );
       await apiService.deleteJob(jobId);
-      this.setState({
-        completedJobs: filtered,
-      });
     } catch (err) {
       console.log(err);
     }
